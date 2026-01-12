@@ -1,0 +1,14 @@
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\bin\Debug\net10.0\DAL.deps.json
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\bin\Debug\net10.0\DAL.runtimeconfig.json
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\bin\Debug\net10.0\DAL.dll
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\bin\Debug\net10.0\DAL.pdb
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.csproj.AssemblyReference.cache
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.AssemblyInfoInputs.cache
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.AssemblyInfo.cs
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.csproj.CoreCompileInputs.cache
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.dll
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\refint\DAL.dll
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.pdb
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.genruntimeconfig.cache
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\ref\DAL.dll
