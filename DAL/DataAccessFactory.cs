@@ -26,5 +26,10 @@ namespace DAL
         {
             return new RoleRepo(db);
         }
+
+        public ITaskFeature TaskDataAccess()
+        {
+            return new TaskRepo(db);
+        }
     }
 }

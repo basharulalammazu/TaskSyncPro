@@ -1,0 +1,109 @@
+﻿using BLL.DTOs;
+using BLL.Services;
+using DAL.EF.Models;
+using Microsoft.AspNetCore.Mvc;
+
+namespace API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TaskController : ControllerBase
+    {
+        private readonly TaskService service;
+
+        public TaskController(TaskService service)
+        {
+            this.service = service;
+        }
+
+        [HttpPost("Create")]
+        public IActionResult Create(TaskDTO task)
+        {
+            var result = service.Create(task);
+            if (!result.IsSuccess)
+                return BadRequest(new { Message = result.ErrorMessage });
+
+            return Ok(new { Message = "Task created successfully." });
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = service.Delete(id);
+            if (result)
+                return Ok(new { Message = "Task deleted successfully." });
+
+            return BadRequest(new { Message = "Task is not deleted." });
+        }
+
+        [HttpGet("Find/{id}")]
+        public IActionResult Find(int id)
+        {
+            var data = service.Find(id);
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "Task not found." });
+        }
+
+        [HttpGet("all")]
+        public IActionResult All()
+        {
+            var data = service.Find();
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "No tasks found." });
+        }
+
+        [HttpGet("FindByTitle/{title}")]
+        public IActionResult FindByTitle(string title)
+        {
+            var data = service.GetTaskByTitle(title);
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "No tasks found." });
+        }
+
+        [HttpGet("FindByPriority/{priority}")]
+        public IActionResult FindByPriority(string priority)
+        {
+            var data = service.GetTasksByPriority(priority);
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "No tasks found." });
+        }
+
+        [HttpGet("FindWithEmployee/{employee}")]
+        public IActionResult FindWithEmployee(string employee)
+        {
+            var data = service.GetTasksWithEmployee(employee);
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "No tasks found." });
+        }
+
+        [HttpGet("FindEmployeeTask/{id}")]
+        public IActionResult FindEmployeeTask(int id)
+        {
+            var data = service.GetTaskWithEmployee(id);
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "Task not found." });
+        }
+
+        [HttpPut("Update")]
+        public IActionResult Update(TaskDTO entity)
+        {
+            var result = service.Update(entity);
+            if (result)
+                return Ok(new { Message = "Task updated successfully." });
+
+            return BadRequest(new { Message = "Task is not updated." });
+        }
+    }
+}
