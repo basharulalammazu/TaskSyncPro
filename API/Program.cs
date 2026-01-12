@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<DataAccessFactory>();
 builder.Services.AddScoped<BLL.Services.UserService>();
+builder.Services.AddScoped<BLL.Services.RoleService>();
 
 builder.Services.AddDbContext<TaskSyncDbContext>(opt => {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConn"));

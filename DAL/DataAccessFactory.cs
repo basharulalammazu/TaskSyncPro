@@ -21,5 +21,10 @@ namespace DAL
         {
             return new UserRepo(db);
         }
+
+        public IRole RoleDataAccess()
+        {
+            return new RoleRepo(db);
+        }
     }
 }

@@ -2,7 +2,6 @@
 using BLL.DTOs;
 using DAL;
 using DAL.EF.Models;
-using DAL.Exception;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,22 +40,22 @@ namespace BLL.Services
 
 
 
-        public (bool IsSuccess, string ErrorMessage) Create(UserDTO user)
+        public (bool IsSuccess, string ErrorMessage) Create(UserDTO userDTO)
         {
             try
             {
                 var mapper = MapperConfig.GetMapper();
-                var dbUser = mapper.Map<User>(user);
-                var success = dataAccessFactory.UserDataAccess().Create(dbUser);
+                var user = mapper.Map<User>(userDTO);
+                var success = dataAccessFactory.UserDataAccess().Create(user);
                 return (success, null);
             }
-            catch (UserValidationException ex)
+            catch (ValidationException ex)
             {
                 return (false, ex.Message);
             }
             catch (Exception ex)
             {
-                return (false, "An unexpected error occurred.");
+                return (false, ex.Message);
             }
         }
 

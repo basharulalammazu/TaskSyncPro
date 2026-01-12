@@ -159,3 +159,4 @@ D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\API\
 D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\API\bin\Debug\net10.0\BLL.pdb
 D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\API\bin\Debug\net10.0\DAL.pdb
 D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\API\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\API\obj\Debug\net10.0\API.sourcelink.json

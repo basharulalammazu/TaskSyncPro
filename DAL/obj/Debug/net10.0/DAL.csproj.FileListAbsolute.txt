@@ -12,3 +12,4 @@ D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\
 D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.pdb
 D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.genruntimeconfig.cache
 D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\ref\DAL.dll
+D:\University\Semester 9\ADVANCED PROGRAMMING WITH .NET\Project\TaskSyncPro\DAL\obj\Debug\net10.0\DAL.sourcelink.json

@@ -12,7 +12,7 @@ namespace BLL
         static MapperConfiguration cfg = new MapperConfiguration(cfg =>
         {
             cfg.CreateMap<User, UserDTO>().ReverseMap();
-           // cfg.CreateMap<Product, ProductDTO>().ReverseMap();
+            cfg.CreateMap<Role, RoleDTO>().ReverseMap();
             // cfg.CreateMap<Category, CategoryProductDTO>().ReverseMap();
             // cfg.CreateMap<Category,CategoryDTO>().ReverseMap();
             // cfg.CreateMap<Category,CategoryDTO>().ReverseMap();
