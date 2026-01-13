@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
+using BLL.Helpers;
 using DAL;
 using DAL.EF.Models;
 using System;
@@ -23,6 +24,7 @@ namespace BLL.Services
         {
             var mapper = MapperConfig.GetMapper();
             var dto = mapper.Map<User>(loginDTO);
+            dto.Password = PasswordGenerator.GeneratePassword();
             var user =  dataAccessFactory.UserDataAccess().FindByEmailAndPassword(dto);
             if (user == null)
                 return null;
