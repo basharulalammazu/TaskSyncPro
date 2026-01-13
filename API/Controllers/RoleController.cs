@@ -20,13 +20,16 @@ namespace API.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(RoleDTO role)
+        public IActionResult Create( RoleDTO role)
         {
             var result = service.Create(role);
-            if (!result.IsSuccess)
-                return BadRequest(new { Message = result.ErrorMessage });
+
+            if (!result)
+                return Conflict(new { Message = "Role already exists." }); // 409 Conflict
+
             return Ok(new { Message = "Role created successfully." });
         }
+
 
 
         [HttpDelete("Delete/{id}")]
@@ -58,7 +61,7 @@ namespace API.Controllers
             return NotFound(new { Message = "No roles found." });
         }
 
-        [HttpGet("FindByName/{role}")]
+        [HttpGet("byName/{role}")]
         public IActionResult Find(string role)
         {
             var data = service.Find(role);
@@ -68,7 +71,7 @@ namespace API.Controllers
 
         }
 
-        [HttpPut("Update")]
+        [HttpPut("update")]
         public IActionResult Update(Role entity)
         {
             var result = service.Update(entity);

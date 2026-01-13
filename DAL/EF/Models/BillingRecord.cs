@@ -9,14 +9,14 @@ namespace DAL.EF.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("TaskItem")]
-        public int TaskItemId { get; set; }
+        [ForeignKey("Task")]
+        public int TaskId { get; set; }
 
         public decimal Amount { get; set; }
         public bool IsPaid { get; set; } = false;
         public DateTime? PaidAt { get; set; }
 
         // Navigation
-        public virtual Task TaskItem { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

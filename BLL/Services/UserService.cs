@@ -5,6 +5,7 @@ using DAL.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -18,9 +19,24 @@ namespace BLL.Services
         }
 
 
+        public async Task<UserDTO> LoginAsync(UserLoginDTO loginDTO)
+        {
+            var mapper = MapperConfig.GetMapper();
+            var dto = mapper.Map<User>(loginDTO);
+            var user =  dataAccessFactory.UserDataAccess().FindByEmailAndPassword(dto);
+            if (user == null)
+                return null;
+
+            return mapper.Map<UserDTO>(user);
+        }
+
+
         public List<UserDTO> Find()
         {
             var dbData = dataAccessFactory.UserDataAccess().Find();
+            if (dbData == null)
+                return null;
+
             var mapper = MapperConfig.GetMapper();
             var dtoData = mapper.Map<List<UserDTO>>(dbData);
             return dtoData;
@@ -40,24 +56,28 @@ namespace BLL.Services
 
 
 
-        public (bool IsSuccess, string ErrorMessage) Create(UserDTO userDTO)
+        public bool Create(UserDTO userDTO)
         {
+            if (userDTO == null)
+                throw new ArgumentNullException(nameof(userDTO));
+
             try
             {
                 var mapper = MapperConfig.GetMapper();
                 var user = mapper.Map<User>(userDTO);
-                var success = dataAccessFactory.UserDataAccess().Create(user);
-                return (success, null);
+
+                return dataAccessFactory.UserDataAccess().Create(user);
             }
-            catch (ValidationException ex)
+            catch (InvalidOperationException ex)
             {
-                return (false, ex.Message);
+                throw new ApplicationException(ex.Message, ex);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                throw new ApplicationException("User creation failed.", ex);
             }
         }
+
 
 
         public bool Delete(int id)
@@ -76,6 +96,9 @@ namespace BLL.Services
         public UserDTO FindByEmail(string email)
         {
             var dbData = dataAccessFactory.UserDataAccess().FindByEmail(email);
+            if (dbData == null)
+                return null;
+
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<UserDTO>(dbData);   
         }
@@ -84,6 +107,9 @@ namespace BLL.Services
         public UserDTO FindByPhoneNumber(string phoneNumber)
         {
             var dbData = dataAccessFactory.UserDataAccess().FindByPhoneNumber(phoneNumber);
+            if (dbData == null)
+                return null;
+
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<UserDTO>(dbData);
         }
@@ -92,6 +118,9 @@ namespace BLL.Services
         public List<UserDTO> GetUsersWithRole()
         {
             var dbData = dataAccessFactory.UserDataAccess().GetUsersWithRole();
+            if (dbData == null || dbData.Count == 0)
+                return null;
+
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<List<UserDTO>>(dbData);
         }

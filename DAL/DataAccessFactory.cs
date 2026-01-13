@@ -17,9 +17,14 @@ namespace DAL
             this.db = db;
         }
 
-        public IUserFeature UserDataAccess()
+        public IBillingFeature BillingDataAccess()
         {
-            return new UserRepo(db);
+            return new BillingRecordRepo(db);
+        }
+
+        public IEmployeeFeature EmployeeDataAccess()
+        {
+            return new EmployeeRepo(db);
         }
 
         public IRole RoleDataAccess()
@@ -27,9 +32,26 @@ namespace DAL
             return new RoleRepo(db);
         }
 
+
         public ITaskFeature TaskDataAccess()
         {
             return new TaskRepo(db);
+        }
+
+        public ITaskLogFeature TaskLogDataAccess()
+        {
+            return new TaskLogRepo(db);
+        }
+
+        public ITeamFeature TeamDataAccess()
+        {
+            return new TeamRepo(db);
+        }
+
+
+        public IUserFeature UserDataAccess()
+        {
+            return new UserRepo(db);
         }
     }
 }

@@ -18,25 +18,30 @@ namespace BLL.Services
         }
 
 
-        public (bool IsSuccess, string ErrorMessage) Create(TaskDTO taskDTO)
+        public bool Create(TaskDTO taskDTO)
         {
-            
+            if (taskDTO == null)
+                throw new ArgumentNullException(nameof(taskDTO), "Task data is required.");
+
             try
             {
                 var mapper = MapperConfig.GetMapper();
                 var task = mapper.Map<DAL.EF.Models.Task>(taskDTO);
-                var success = dataAccessFactory.TaskDataAccess().Create(task);
-                return (success, null);
+
+                return dataAccessFactory.TaskDataAccess().Create(task);
             }
-            catch (ValidationException ex)
+            catch (InvalidOperationException ex)
             {
-                return (false, ex.Message);
+                // Duplicate task title
+                throw new ApplicationException(ex.Message, ex);
             }
             catch (Exception ex)
             {
-                return (false, ex.Message);
+                // Any other unexpected error
+                throw new ApplicationException("Task creation failed.", ex);
             }
         }
+
 
         public bool Delete(int id)
         {
@@ -66,21 +71,23 @@ namespace BLL.Services
             return mapper.Map<List<TaskDTO>>(data);
         }
 
-        public TaskDTO GetTasksByPriority(string priority)
+        public List<TaskDTO> GetTasksByPriority(string priority)
         {
             var data = dataAccessFactory.TaskDataAccess().GetTasksByPriority(priority);
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<TaskDTO>(data);
+            return mapper.Map<List<TaskDTO>>(data);
         }
 
-        public TaskDTO GetTasksWithEmployee(string employee)
+
+        public List<TaskDTO> GetTasksWithEmployee()
         {
-            var data = dataAccessFactory.TaskDataAccess().GetTasksWithEmployee(employee);
+            var data = dataAccessFactory.TaskDataAccess().GetTasksWithEmployee();
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<TaskDTO>(data);
+            return mapper.Map<List<TaskDTO>>(data);
         }
 
-        public TaskDTO GetTaskWithEmployee(int id)
+
+        public List<TaskDTO> GetTaskWithEmployee(int id)
         {
             var data = dataAccessFactory.TaskDataAccess().GetTaskWithEmployee(id);
 
@@ -88,7 +95,7 @@ namespace BLL.Services
                 return null;
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<TaskDTO>(data[0]);
+            return mapper.Map<List<TaskDTO>>(data);
 
 
         }

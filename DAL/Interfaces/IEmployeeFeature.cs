@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface IEmployeeFeature
+    public interface IEmployeeFeature : IRepository<Employee>
     {
         List<Employee> GetEmployeesWithTasks();
         Employee GetEmployeeWithTasks(int id);

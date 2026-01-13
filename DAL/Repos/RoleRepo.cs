@@ -19,7 +19,7 @@ namespace DAL.Repos
         {
             var existingRoles = Find(entity.Name);
             if (existingRoles.Count > 0)
-                throw new System.Exception("This role already exists"); // Role with the same name already exists
+                return false;
 
             db.Roles.Add(entity);
             return db.SaveChanges() > 0;
@@ -38,13 +38,10 @@ namespace DAL.Repos
 
         public Role Find(int id)
         {
-            var role = db.Roles.Find(id);
-            if (role == null)
-                throw new System.Exception("This role is not found");
-
-            return role;
+            return db.Roles.Find(id);
         }
-        
+
+
         public List<Role> Find()
         {
             return db.Roles.ToList();
@@ -65,7 +62,7 @@ namespace DAL.Repos
             var dbObj = Find(entity.Id);
 
             if (dbObj == null)
-                throw new System.Exception("This role is not found");
+                return false;
 
             dbObj.Id = entity.Id;
             dbObj.Name = entity.Name;

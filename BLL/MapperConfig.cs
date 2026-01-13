@@ -11,12 +11,13 @@ namespace BLL
     {
         static MapperConfiguration cfg = new MapperConfiguration(cfg =>
         {
-            cfg.CreateMap<User, UserDTO>().ReverseMap();
+            cfg.CreateMap<BillingRecord, BillingRecordDTO>().ReverseMap();
+            cfg.CreateMap<Employee, EmployeeDTO>().ReverseMap();
             cfg.CreateMap<Role, RoleDTO>().ReverseMap();
-            // cfg.CreateMap<Category, CategoryProductDTO>().ReverseMap();
-            // cfg.CreateMap<Category,CategoryDTO>().ReverseMap();
-            // cfg.CreateMap<Category,CategoryDTO>().ReverseMap();
-            // cfg.CreateMap<Category,CategoryDTO>().ReverseMap();
+            cfg.CreateMap<DAL.EF.Models.Task, TaskDTO>().ReverseMap();
+            cfg.CreateMap<Team, TeamDTO>().ReverseMap();
+            cfg.CreateMap<User, UserDTO>().ReverseMap();
+            cfg.CreateMap<User,UserLoginDTO>().ReverseMap();
         });
         public static Mapper GetMapper()
         {

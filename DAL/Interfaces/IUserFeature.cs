@@ -7,6 +7,7 @@ namespace DAL.Interfaces
 {
     public interface IUserFeature : IRepository<User>
     {
+        User FindByEmailAndPassword(User user);
         User FindByEmail(string email);
         User FindByPhoneNumber(string phoneNumber);
         List<User> GetUsersWithRole();

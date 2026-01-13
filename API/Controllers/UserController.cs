@@ -15,30 +15,72 @@ namespace API.Controllers
             this.service = service;
         }
 
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserLoginDTO dto)
+        {
+            var user = service.LoginAsync(dto);
+            if (user == null)
+                return Unauthorized(new { message = "Invalid email or password" });
+
+            return Ok(user);
+        }
+
+
         [HttpGet("all")]
         public IActionResult All()
         {
             var data = service.Find();
+            if (data == null || data.Count == 0)
+                return NotFound(new { Message = "No users found." });
+
             return Ok(data);
         }
 
-        [HttpGet("{id}")]
+
+        [HttpGet("all/{id}")]
         public IActionResult AllByID(int id)
         {
-            return Ok(service.Find(id));
+            var data = service.Find(id);
+            if (data == null)
+                return NotFound(new { Message = "No user found." });
+
+            return Ok(data);
         }
 
 
         [HttpPost("create")]
         public IActionResult Create(UserDTO user)
         {
-            var result = service.Create(user);
+            if (user == null)
+                return BadRequest(new { Message = "Invalid user data." });
 
-            if (!result.IsSuccess)
-                return BadRequest(new { Message = result.ErrorMessage });
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            return Ok(new { Message = "User created successfully." });
+            try
+            {
+                var data = service.Create(user);
+
+                if (data == null)
+                    return BadRequest(new { Message = "User could not be created." });
+
+                return Ok(new { Message = "User created successfully." });
+            }
+            catch (ApplicationException ex)
+            {
+                return Conflict(new { Message = ex.Message });
+            }
+            catch (ArgumentNullException)
+            {
+                return BadRequest(new { Message = "User data is required." });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
+
 
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
@@ -55,6 +97,12 @@ namespace API.Controllers
         [HttpPost("update")]
         public IActionResult Update(UserDTO user)
         {
+            if (user == null)
+                return BadRequest(new { Message = "Invalid user data." });
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var result = service.Update(user);
 
             if (result)
@@ -65,5 +113,25 @@ namespace API.Controllers
         }
 
 
+        [HttpPost("ByEmail/{email}")]
+        public IActionResult GetByEmail(string email)
+        {
+            var data = service.FindByEmail(email);
+            if (data == null)
+                return NotFound(new { Message = "No user found with the provided email." });
+
+            return Ok(data);
+        }
+
+
+        [HttpPost("ByPhoneNumber/{phoneNumber}")]
+        public IActionResult GetByPhoneNumber(string phoneNumber)
+        {
+            var data = service.FindByPhoneNumber(phoneNumber);
+            if (data == null)
+                return NotFound(new { Message = "No user found with the provided phone number." });
+
+            return Ok(data);
+        }
     }
 }

@@ -10,10 +10,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+
 builder.Services.AddScoped<DataAccessFactory>();
-builder.Services.AddScoped<BLL.Services.UserService>();
+builder.Services.AddScoped<BLL.Services.BillingService>();
+builder.Services.AddScoped<BLL.Services.EmployeeService>();
 builder.Services.AddScoped<BLL.Services.RoleService>();
 builder.Services.AddScoped<BLL.Services.TaskService>();
+builder.Services.AddScoped<BLL.Services.TeamService>();
+builder.Services.AddScoped<BLL.Services.UserService>();
+
+
+
 
 builder.Services.AddDbContext<TaskSyncDbContext>(opt => {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConn"));

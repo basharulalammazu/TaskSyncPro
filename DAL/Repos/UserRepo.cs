@@ -16,6 +16,13 @@ namespace DAL.Repos
             this.db = db;
         }
 
+        public User FindByEmailAndPassword(User user)
+        {
+            return db.Users
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+        }
+
         public User Find(int id)
         {
             return db.Users.Find(id);
@@ -29,14 +36,15 @@ namespace DAL.Repos
         public bool Create(User user)
         {
             if (FindByEmail(user.Email) != null)
-                throw new System.Exception("Email already exists");
+                throw new InvalidOperationException("Email already exists.");
 
             if (FindByPhoneNumber(user.PhoneNumber) != null)
-                throw new System.Exception("Phone number already exists");
+                throw new InvalidOperationException("Phone number already exists.");
 
             db.Users.Add(user);
             return db.SaveChanges() > 0;
         }
+
 
 
         public bool Delete(int id)

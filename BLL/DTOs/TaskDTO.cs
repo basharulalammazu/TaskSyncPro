@@ -15,6 +15,7 @@ namespace BLL.DTOs
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Priority is required.")]
+
         [StringLength(20, ErrorMessage = "Priority must be within 20 characters.")]
         public string Priority { get; set; }
         // Allowed: Low, Medium, High

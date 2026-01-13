@@ -16,17 +16,35 @@ namespace API.Controllers
             this.service = service;
         }
 
-        [HttpPost("Create")]
+        [HttpPost("create")]
         public IActionResult Create(TaskDTO task)
         {
-            var result = service.Create(task);
-            if (!result.IsSuccess)
-                return BadRequest(new { Message = result.ErrorMessage });
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            return Ok(new { Message = "Task created successfully." });
+            try
+            {
+                service.Create(task);
+                return Ok(new { Message = "Task created successfully." });
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (ApplicationException ex)
+            {
+                // Handles duplicate or business errors
+                return Conflict(new { Message = ex.Message });
+            }
+            catch (Exception)
+            {
+                // Any unexpected errors
+                return StatusCode(500, "Internal server error");
+            }
         }
 
-        [HttpDelete("Delete/{id}")]
+
+        [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
             var result = service.Delete(id);
@@ -36,7 +54,7 @@ namespace API.Controllers
             return BadRequest(new { Message = "Task is not deleted." });
         }
 
-        [HttpGet("Find/{id}")]
+        [HttpGet("find/{id}")]
         public IActionResult Find(int id)
         {
             var data = service.Find(id);
@@ -50,13 +68,16 @@ namespace API.Controllers
         public IActionResult All()
         {
             var data = service.Find();
-            if (data != null)
-                return Ok(data);
+            if (data.Count == 0)
+                return NotFound(new { Message = "No tasks found." });
 
-            return NotFound(new { Message = "No tasks found." });
+            if (data == null)
+                return BadRequest(new { Message = "Something is wrong." });
+
+            return Ok(data);
         }
 
-        [HttpGet("FindByTitle/{title}")]
+        [HttpGet("findByTitle/{title}")]
         public IActionResult FindByTitle(string title)
         {
             var data = service.GetTaskByTitle(title);
@@ -66,7 +87,7 @@ namespace API.Controllers
             return NotFound(new { Message = "No tasks found." });
         }
 
-        [HttpGet("FindByPriority/{priority}")]
+        [HttpGet("findByPriority/{priority}")]
         public IActionResult FindByPriority(string priority)
         {
             var data = service.GetTasksByPriority(priority);
@@ -76,17 +97,17 @@ namespace API.Controllers
             return NotFound(new { Message = "No tasks found." });
         }
 
-        [HttpGet("FindWithEmployee/{employee}")]
-        public IActionResult FindWithEmployee(string employee)
+        [HttpGet("findWithEmployee")]
+        public IActionResult FindWithEmployee()
         {
-            var data = service.GetTasksWithEmployee(employee);
+            var data = service.GetTasksWithEmployee();
             if (data != null)
                 return Ok(data);
 
             return NotFound(new { Message = "No tasks found." });
         }
 
-        [HttpGet("FindEmployeeTask/{id}")]
+        [HttpGet("findEmployeeTask/{id}")]
         public IActionResult FindEmployeeTask(int id)
         {
             var data = service.GetTaskWithEmployee(id);
@@ -96,7 +117,7 @@ namespace API.Controllers
             return NotFound(new { Message = "Task not found." });
         }
 
-        [HttpPut("Update")]
+        [HttpPut("update")]
         public IActionResult Update(TaskDTO entity)
         {
             var result = service.Update(entity);

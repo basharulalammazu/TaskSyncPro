@@ -129,7 +129,7 @@ namespace DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TaskItemId = table.Column<int>(type: "int", nullable: false),
+                    TaskId = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IsPaid = table.Column<bool>(type: "bit", nullable: false),
                     PaidAt = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -138,8 +138,8 @@ namespace DAL.Migrations
                 {
                     table.PrimaryKey("PK_BillingRecords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BillingRecords_Tasks_TaskItemId",
-                        column: x => x.TaskItemId,
+                        name: "FK_BillingRecords_Tasks_TaskId",
+                        column: x => x.TaskId,
                         principalTable: "Tasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -167,9 +167,9 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BillingRecords_TaskItemId",
+                name: "IX_BillingRecords_TaskId",
                 table: "BillingRecords",
-                column: "TaskItemId",
+                column: "TaskId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -180,8 +180,7 @@ namespace DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_UserId",
                 table: "Employees",
-                column: "UserId",
-                unique: true);
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskLogs_TaskItemId",

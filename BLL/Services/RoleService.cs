@@ -17,24 +17,18 @@ namespace BLL.Services
         }
 
 
-        public (bool IsSuccess, string ErrorMessage) Create(RoleDTO entity)
+        public bool Create(RoleDTO entity)
         {
-            try
-            {
-                var mapper = MapperConfig.GetMapper();
-                var role = mapper.Map<Role>(entity);
-                var success = dataAccessFactory.RoleDataAccess().Create(role);
-                return (success, null);
-            }
-            catch (ValidationException ex)
-            {
-                return (false, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return (false, ex.Message);
-            }
+            var mapper = MapperConfig.GetMapper();
+            var role = mapper.Map<Role>(entity);
+            var success = dataAccessFactory.RoleDataAccess().Create(role);
+
+            if (!success)
+                return false;
+
+            return true;
         }
+
 
         public bool Delete(int id)
         {
@@ -44,17 +38,21 @@ namespace BLL.Services
         public RoleDTO Find(int id)
         {
             var dbData = dataAccessFactory.RoleDataAccess().Find(id);
+            if (dbData == null) 
+                return null;
+
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<RoleDTO>(dbData);
         }
 
-        public List<Role> Find()
+
+        public List<RoleDTO> Find()
         {
             var dbData = dataAccessFactory.RoleDataAccess().Find();
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<List<Role>>(dbData);
-
+            return mapper.Map<List<RoleDTO>>(dbData);
         }
+
 
         public List<RoleDTO> Find(string role)
         {

@@ -1,0 +1,149 @@
+﻿using DAL.EF;
+using DAL.EF.Models;
+using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DAL.Repos
+{
+    internal class TaskRepo : IRepository<EF.Models.Task>, ITaskFeature
+    {
+        private readonly TaskSyncDbContext db;
+        public TaskRepo(TaskSyncDbContext db)
+        {
+            this.db = db;
+        }
+
+        public bool Create(EF.Models.Task entity)
+        {
+            // Check for duplicate title
+            if (GetTaskByTitle(entity.Title).Any())
+                throw new InvalidOperationException("A task with this title already exists.");
+
+            // Check valid employee assignment
+            if (!db.Employees.Any(e => e.Id == entity.AssignedEmployeeId.Value))
+                throw new InvalidOperationException("Assigned employee does not exist.");
+            
+            if (!db.Users.Any(u => u.Id == entity.CreatedBy))
+                throw new InvalidOperationException("Creator user does not exist.");
+
+             // same title = same task
+
+            if (db.Tasks.Any(t => t.AssignedEmployeeId == entity.AssignedEmployeeId && t.Title == entity.Title))
+                throw new InvalidOperationException("This employee is already assigned to this task.");
+
+            db.Tasks.Add(entity);
+            return db.SaveChanges() > 0;
+        }
+
+
+        public bool Delete(int id)
+        {
+            var dbRole = Find(id);
+            if (dbRole == null)
+                throw new System.Exception("This task is not found");
+
+            db.Tasks.Remove(dbRole);
+            return db.SaveChanges() > 0;
+        }
+
+        public EF.Models.Task Find(int id)
+        {
+            var role = db.Tasks.Find(id);
+            if (role == null)
+                throw new System.Exception("This role is not found");
+
+            return role;
+        }
+
+        public List<EF.Models.Task> Find()
+        {
+            return db.Tasks.ToList();
+        }
+
+        public List<EF.Models.Task> GetTaskByTitle(string title)
+        {
+            return db.Tasks.Where(t => t.Title.ToLower().Contains(title.ToLower())).ToList();
+        }
+
+        public List<EF.Models.Task> GetTasksByPriority(string priority)
+        {
+            return db.Tasks
+                     .Where(t => t.Priority != null &&
+                                 t.Priority.ToLower().Contains(priority.ToLower()))
+                     .ToList();
+        }
+
+
+        public List<EF.Models.Task> GetTasksWithEmployee()
+        {
+            return (from t in db.Tasks.Include(ct => ct.AssignedEmployee)
+                    select t).ToList();
+
+
+   
+
+        public List<EF.Models.Task> GetTaskWithEmployee(int id)
+        {
+            return (from t in db.Tasks
+                    where t.AssignedEmployee.Id == id
+                    select t).ToList();
+        }
+
+        public bool Update(EF.Models.Task entity)
+        {
+            //  Find existing task
+            var dbTask = Find(entity.Id);
+            if (dbTask == null)
+                throw new InvalidOperationException("This task is not found.");
+
+            //  Check for duplicate title (ignore the current task itself)
+            if (db.Tasks.Any(t => t.Title.ToLower() == entity.Title.ToLower() && t.Id != entity.Id))
+                throw new InvalidOperationException("A task with this title already exists.");
+
+            // Check assigned employee exists (if assigned)
+            if (entity.AssignedEmployeeId.HasValue)
+            {
+                bool employeeExists = db.Employees.Any(e => e.Id == entity.AssignedEmployeeId.Value);
+                if (!employeeExists)
+                    throw new InvalidOperationException("Assigned employee does not exist.");
+
+                //  Ensure the employee is not already assigned to the same task (different task)
+                bool alreadyAssigned = db.Tasks.Any(t =>
+                    t.AssignedEmployeeId == entity.AssignedEmployeeId &&
+                    t.Title.ToLower() == entity.Title.ToLower() &&
+                    t.Id != entity.Id);
+
+                if (alreadyAssigned)
+                    throw new InvalidOperationException("This employee is already assigned to this task.");
+            }
+
+            // Check creator exists
+            if (!db.Users.Any(u => u.Id == entity.CreatedBy))
+                throw new InvalidOperationException("Creator user does not exist.");
+
+            // Update task properties
+            dbTask.Title = entity.Title;
+            dbTask.Description = entity.Description;
+            dbTask.Priority = entity.Priority;
+            dbTask.Status = entity.Status;
+            dbTask.AssignedEmployeeId = entity.AssignedEmployeeId;
+            dbTask.DueDate = entity.DueDate;
+            dbTask.CreatedAt = entity.CreatedAt;
+            dbTask.CompletedAt = entity.CompletedAt;
+
+            db.Entry(dbTask).CurrentValues.SetValues(entity);
+
+            // 7️⃣ Save changes
+            return db.SaveChanges() > 0;
+        }
+
+
+        List<EF.Models.Task> ITaskFeature.GetTaskWithEmployee(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

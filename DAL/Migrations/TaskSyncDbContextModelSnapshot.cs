@@ -39,12 +39,12 @@ namespace DAL.Migrations
                     b.Property<DateTime?>("PaidAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TaskItemId")
+                    b.Property<int>("TaskId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TaskItemId")
+                    b.HasIndex("TaskId")
                         .IsUnique();
 
                     b.ToTable("BillingRecords");
@@ -76,8 +76,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Employees");
                 });
@@ -243,26 +242,26 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.EF.Models.BillingRecord", b =>
                 {
-                    b.HasOne("DAL.EF.Models.Task", "TaskItem")
+                    b.HasOne("DAL.EF.Models.Task", "Task")
                         .WithOne("BillingRecord")
-                        .HasForeignKey("DAL.EF.Models.BillingRecord", "TaskItemId")
+                        .HasForeignKey("DAL.EF.Models.BillingRecord", "TaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TaskItem");
+                    b.Navigation("Task");
                 });
 
             modelBuilder.Entity("DAL.EF.Models.Employee", b =>
                 {
                     b.HasOne("DAL.EF.Models.Team", "Team")
-                        .WithMany()
+                        .WithMany("Employees")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.EF.Models.User", "User")
-                        .WithOne("Employee")
-                        .HasForeignKey("DAL.EF.Models.Employee", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -274,7 +273,7 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.EF.Models.Task", b =>
                 {
                     b.HasOne("DAL.EF.Models.Employee", "AssignedEmployee")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("AssignedEmployeeId");
 
                     b.HasOne("DAL.EF.Models.User", "Creator")
@@ -310,16 +309,20 @@ namespace DAL.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("DAL.EF.Models.Employee", b =>
+                {
+                    b.Navigation("Tasks");
+                });
+
             modelBuilder.Entity("DAL.EF.Models.Task", b =>
                 {
                     b.Navigation("BillingRecord")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DAL.EF.Models.User", b =>
+            modelBuilder.Entity("DAL.EF.Models.Team", b =>
                 {
-                    b.Navigation("Employee")
-                        .IsRequired();
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }
