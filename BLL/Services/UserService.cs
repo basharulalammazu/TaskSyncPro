@@ -67,8 +67,10 @@ namespace BLL.Services
             {
                 var mapper = MapperConfig.GetMapper();
                 var user = mapper.Map<User>(userDTO);
+                user.Password = PasswordGenerator.GeneratePassword(4);
 
-                return dataAccessFactory.UserDataAccess().Create(user);
+                return dataAccessFactory.UserDataAccess().Create(user) && EmailService.SendUserCredentials(user.Email, user.Name, user.Password, user.PhoneNumber);
+
             }
             catch (InvalidOperationException ex)
             {
