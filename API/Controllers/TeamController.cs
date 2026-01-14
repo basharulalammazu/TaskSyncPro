@@ -118,15 +118,24 @@ namespace API.Controllers
         [HttpGet("withEmployees")]
         public IActionResult GetTeamsWithEmployees()
         {
-            try
-            {
                 var data = service.GetTeamsWithEmployees();
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { Message = ex.Message });
-            }
+            if (data == null)
+                return BadRequest(new { Message = "Something is wrong" });
+
+            if (data.Count == 0)
+                return NotFound(new { Message = "No teams with employees found" });
+            
+            return Ok(data);
+        }
+
+        [HttpGet("withEmployees/{id}")]
+        public IActionResult GetTeamsWithEmployees(int id)
+        {
+            var data = service.GetTeamsWithEmployees(id);
+            if (data == null)
+                return NotFound(new { Message = "No teams with employees found" });
+
+            return Ok(data);
         }
     }
 }

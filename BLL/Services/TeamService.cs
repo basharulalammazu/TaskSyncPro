@@ -20,16 +20,25 @@ namespace BLL.Services
 
         public bool Create(TeamDTO teamDTO)
         {
-            var mapper = MapperConfig.GetMapper();
-            var data = mapper.Map<Team>(teamDTO);
+            try
+            {
+                var mapper = MapperConfig.GetMapper();
+                var data = mapper.Map<Team>(teamDTO);
 
-            return dataAccessFactory.TeamDataAccess().Create(data);
+                return dataAccessFactory.TeamDataAccess().Create(data);
+            }
+            catch 
+            {
+                throw;
+            }
+          
         }
 
-
-        public bool Delete(int id)
+        public List<TeamDTO> Find()
         {
-            return dataAccessFactory.TeamDataAccess().Delete(id);
+            var data = dataAccessFactory.TeamDataAccess().Find();
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<List<TeamDTO>>(data);
         }
 
         public TeamDTO Find(int id)
@@ -42,15 +51,6 @@ namespace BLL.Services
             return mapper.Map<TeamDTO>(data);
         }
 
-
-        public List<TeamDTO> Find()
-        {
-            var data = dataAccessFactory.TeamDataAccess().Find();   
-            var mapper = MapperConfig.GetMapper();
-            return mapper.Map<List<TeamDTO>>(data);
-        }
-
-
         public bool Update(TeamDTO teamDTO)
         {
             var mapper = MapperConfig.GetMapper();
@@ -59,14 +59,28 @@ namespace BLL.Services
             return dataAccessFactory.TeamDataAccess().Update(data);
         }
 
-        public List<TeamDTO> GetTeamsWithEmployees()
+
+        public bool Delete(int id)
+        {
+            return dataAccessFactory.TeamDataAccess().Delete(id);
+        }
+
+        public List<TeamEmployeeDTO> GetTeamsWithEmployees()
         {
             var data = dataAccessFactory.TeamDataAccess().GetTeamsWithEmployees();
 
             var mapper = MapperConfig.GetMapper();
-            return  mapper.Map<List<TeamDTO>>(data);
+            return  mapper.Map<List<TeamEmployeeDTO>>(data);
         }
 
 
+
+        public TeamEmployeeDTO GetTeamsWithEmployees(int id)
+        {
+            var data = dataAccessFactory.TeamDataAccess().GetTeamWithEmployee(id);
+
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<TeamEmployeeDTO>(data);
+        }
     }
 }

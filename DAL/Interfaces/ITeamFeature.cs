@@ -8,6 +8,8 @@ namespace DAL.Interfaces
     public interface ITeamFeature : IRepository<Team>
     {
         List<Team> GetTeamsWithEmployees();
-        Team GetTeamWithEmployees(int id);
+        Team GetTeamWithEmployee(int id);
+        List<Team> Find(string name);
+
     }
 }

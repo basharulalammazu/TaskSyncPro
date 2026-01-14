@@ -18,26 +18,29 @@ namespace DAL.Repos
 
         public bool Create(Team t) 
         { 
+            if (db.Teams.Any(existing => existing.Name == t.Name)) 
+                throw new Exception("Team with the same name already exists.");
+
             db.Teams.Add(t); 
             return db.SaveChanges() > 0; 
         }
-
-        public bool Delete(int id) 
-        { 
-            var ex = Find(id); 
-            db.Teams.Remove(ex); 
-            return db.SaveChanges() > 0; 
-        }
-
-        public Team Find(int id) 
-        { 
-            return db.Teams.Find(id); 
-        }
+        
 
         public List<Team> Find() 
         { 
             return db.Teams.ToList(); 
         }
+
+        public Team Find(int id)
+        {
+            return db.Teams.Find(id);
+        }
+
+        public List<Team> Find(string name)
+        {
+            return db.Teams.Where(t => t.Name.Contains(name)).ToList();
+        }
+
 
         public bool Update(Team t) 
         { 
@@ -46,12 +49,22 @@ namespace DAL.Repos
             return db.SaveChanges() > 0; 
         }
 
+        public bool Delete(int id)
+        {
+            var ex = Find(id);
+            if (ex == null)
+                return false;
+
+            db.Teams.Remove(ex);
+            return db.SaveChanges() > 0;
+        }
+
         public List<Team> GetTeamsWithEmployees()
         {
             return db.Teams.Include(t => t.Employees).ToList();
         }
 
-        public Team GetTeamWithEmployees(int id)
+        public Team GetTeamWithEmployee(int id)
         {
             return db.Teams.Include(t => t.Employees).FirstOrDefault(t => t.Id == id);
         }
