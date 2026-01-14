@@ -130,14 +130,16 @@ namespace BLL.Services
         }
 
 
-        public List<UserDTO> GetUsersWithRole()
+        public List<UserRoleDTO> GetUsersWithRole()
         {
             var dbData = dataAccessFactory.UserDataAccess().GetUsersWithRole();
+
             if (dbData == null || dbData.Count == 0)
-                return null;
+                return new List<UserRoleDTO>();
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<List<UserDTO>>(dbData);
+            return mapper.Map<List<UserRoleDTO>>(dbData);
         }
+
     }
 }

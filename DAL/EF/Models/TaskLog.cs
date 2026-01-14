@@ -9,7 +9,7 @@ namespace DAL.EF.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("TaskItem")]
+        [ForeignKey("Task")]
         public int TaskItemId { get; set; }
 
         [Column(TypeName = "VARCHAR")]
@@ -18,6 +18,6 @@ namespace DAL.EF.Models
         public DateTime ChangedAt { get; set; } = DateTime.Now;
 
         // Navigation
-        public virtual Task TaskItem { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

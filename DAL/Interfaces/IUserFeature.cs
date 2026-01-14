@@ -10,6 +10,6 @@ namespace DAL.Interfaces
         User FindByEmailAndPassword(User user);
         User FindByEmail(string email);
         User FindByPhoneNumber(string phoneNumber);
-        List<User> GetUsersWithRole();
+        List<Role> GetUsersWithRole();
     }
 }

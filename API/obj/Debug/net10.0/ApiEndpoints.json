@@ -640,7 +640,7 @@
   {
     "ContainingType": "API.Controllers.UserController",
     "Method": "GetByEmail",
-    "RelativePath": "api/User/ByEmail/{email}",
+    "RelativePath": "api/User/byEmail/{email}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -656,7 +656,7 @@
   {
     "ContainingType": "API.Controllers.UserController",
     "Method": "GetByPhoneNumber",
-    "RelativePath": "api/User/ByPhoneNumber/{phoneNumber}",
+    "RelativePath": "api/User/byPhoneNumber/{phoneNumber}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -731,6 +731,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.UserController",
+    "Method": "GetUsersWithRoles",
+    "RelativePath": "api/User/withRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   }
 ]

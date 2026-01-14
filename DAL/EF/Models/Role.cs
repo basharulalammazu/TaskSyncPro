@@ -14,5 +14,13 @@ namespace DAL.EF.Models
         [StringLength(30)]
         [Column(TypeName = "VARCHAR")]
         public string Name { get; set; }   // Admin, Manager, Employee
+
+        public virtual List<User> Users { get; set; }
+
+        public Role()
+        {
+            Users = new List<User>();
+        }
+
     }
 }

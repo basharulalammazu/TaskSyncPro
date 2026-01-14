@@ -1,0 +1,14 @@
+using System.Collections.Generic;
+
+namespace BLL.DTOs
+{
+    public class UserRoleDTO : RoleDTO
+    {
+        public List<UserDTO> Users { get; set; }
+
+        public UserRoleDTO()
+        {
+            Users = new List<UserDTO>();
+        }
+    }
+}

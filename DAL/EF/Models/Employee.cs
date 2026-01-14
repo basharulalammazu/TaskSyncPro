@@ -25,6 +25,11 @@ namespace DAL.EF.Models
         // Navigation
         public virtual User User { get; set; }
         public virtual Team Team { get; set; }
-        public virtual ICollection<Task> Tasks { get; set; }
+        public virtual List<Task> Tasks { get; set; }
+
+        public Employee()
+        {
+            Tasks = new List<Task>();
+        }
     }
 }

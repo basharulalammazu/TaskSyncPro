@@ -1199,7 +1199,7 @@
         }
       }
     },
-    "/api/User/ByEmail/{email}": {
+    "/api/User/byEmail/{email}": {
       "get": {
         "tags": [
           "User"
@@ -1221,7 +1221,7 @@
         }
       }
     },
-    "/api/User/ByPhoneNumber/{phoneNumber}": {
+    "/api/User/byPhoneNumber/{phoneNumber}": {
       "get": {
         "tags": [
           "User"
@@ -1235,6 +1235,18 @@
               "type": "string"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/withRoles": {
+      "get": {
+        "tags": [
+          "User"
         ],
         "responses": {
           "200": {
@@ -1328,6 +1340,12 @@
             "maxLength": 30,
             "minLength": 0,
             "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
           }
         }
       },
@@ -1456,6 +1474,63 @@
         "properties": {
           "name": {
             "type": "string"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "name",
+          "email",
+          "phoneNumber",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "maxLength": 11,
+            "minLength": 0,
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "roleId": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role"
           }
         }
       },

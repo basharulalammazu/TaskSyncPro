@@ -1,0 +1,9 @@
+﻿using System.Collections.Generic;
+
+namespace BLL.DTOs
+{
+    public class UserRoleDTO : UserDTO
+    {
+        public RoleDTO? Role { get; set; }
+    }
+}

@@ -23,14 +23,15 @@ namespace DAL.Repos
                     select u).SingleOrDefault();
         }
 
-        public User Find(int id)
-        {
-            return db.Users.Find(id);
-        }
 
         public List<User> Find()
         {
             return db.Users.ToList();
+        }
+
+        public User Find(int id)
+        {
+            return db.Users.Find(id);
         }
 
         public bool Create(User user)
@@ -91,9 +92,9 @@ namespace DAL.Repos
         }
 
 
-        public List<User> GetUsersWithRole()
+        public List<Role> GetUsersWithRole()
         {
-            return db.Users.Include(u => u.Role).ToList();
+            return db.Roles.Include(u => u.Users).ToList();
         }
 
 

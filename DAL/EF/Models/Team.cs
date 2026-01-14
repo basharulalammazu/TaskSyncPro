@@ -16,6 +16,10 @@ namespace DAL.EF.Models
         public string Name { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
+        public virtual List<Employee> Employees { get; set; }
+        public Team()
+        {
+            Employees = new List<Employee>();
+        }
     }
 }
