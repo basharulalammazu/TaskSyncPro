@@ -3,6 +3,7 @@ using BLL.DTOs;
 using BLL.Helpers;
 using DAL;
 using DAL.EF.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -62,6 +63,7 @@ namespace BLL.Services
         {
             if (userDTO == null)
                 throw new ArgumentNullException(nameof(userDTO));
+
 
             try
             {

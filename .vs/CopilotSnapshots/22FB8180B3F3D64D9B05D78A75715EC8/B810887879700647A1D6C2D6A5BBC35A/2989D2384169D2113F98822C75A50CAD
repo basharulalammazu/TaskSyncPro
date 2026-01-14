@@ -17,7 +17,7 @@ namespace API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login( UserLoginDTO dto)
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO dto)
         {
             var user = service.LoginAsync(dto);
             if (user == null)
@@ -50,7 +50,7 @@ namespace API.Controllers
 
 
         [HttpPost("create")]
-        public IActionResult Create( UserDTO user)
+        public IActionResult Create([FromBody] UserDTO user)
         {
             if (user == null)
                 return BadRequest(new { Message = "Invalid user data." });
@@ -97,7 +97,7 @@ namespace API.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update( UserDTO user)
+        public IActionResult Update([FromBody] UserDTO user)
         {
             if (user == null)
                 return BadRequest(new { Message = "Invalid user data." });

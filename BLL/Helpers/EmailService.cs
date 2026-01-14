@@ -54,7 +54,7 @@ namespace BLL.Helpers
                 using (var smtpClient = new SmtpClient("smtp.gmail.com")) // or your SMTP server
                 {
                     smtpClient.Port = 587;
-                    smtpClient.Credentials = new NetworkCredential("your_email@gmail.com", "your_email_app_password"); // Use app password
+                    smtpClient.Credentials = new NetworkCredential("basharulalammicrosoft@gmail.com", "nfcm wiah ulle uzrn"); // Use app password
                     smtpClient.EnableSsl = true;
 
                     smtpClient.Send(mailMessage);

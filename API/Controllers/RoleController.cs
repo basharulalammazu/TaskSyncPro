@@ -20,8 +20,15 @@ namespace API.Controllers
         }
 
         [HttpPost("Create")]
-        public IActionResult Create( RoleDTO role)
+        public IActionResult Create(RoleDTO role)
         {
+           // Console.WriteLine(role.Name);
+            if (role == null)
+                return BadRequest(new { Message = "Invalid role data." });
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var result = service.Create(role);
 
             if (!result)
