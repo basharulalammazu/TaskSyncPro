@@ -121,7 +121,8 @@ namespace DAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("VARCHAR");
+                        .HasMaxLength(500)
+                        .HasColumnType("VARCHAR(500)");
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
@@ -129,17 +130,17 @@ namespace DAL.Migrations
                     b.Property<string>("Priority")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("VARCHAR(20)");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("VARCHAR(20)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("VARCHAR");
+                        .HasColumnType("VARCHAR(150)");
 
                     b.HasKey("Id");
 
@@ -289,19 +290,19 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("DAL.EF.Models.TaskLog", b =>
                 {
-                    b.HasOne("DAL.EF.Models.Task", "TaskItem")
+                    b.HasOne("DAL.EF.Models.Task", "Task")
                         .WithMany()
                         .HasForeignKey("TaskItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("TaskItem");
+                    b.Navigation("Task");
                 });
 
             modelBuilder.Entity("DAL.EF.Models.User", b =>
                 {
                     b.HasOne("DAL.EF.Models.Role", "Role")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -312,6 +313,11 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.EF.Models.Employee", b =>
                 {
                     b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("DAL.EF.Models.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DAL.EF.Models.Task", b =>

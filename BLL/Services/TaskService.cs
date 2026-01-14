@@ -11,6 +11,10 @@ namespace BLL.Services
 {
     public class TaskService
     {
+        private static readonly List<string> AllowedStatuses = new List<string> {"Pending", "InProgress","Completed","Overdue"};
+        private static readonly List<string> AllowedPriorities = new List<string> {"Low", "Medium", "High"};
+
+
         DataAccessFactory dataAccessFactory;
         public TaskService(DataAccessFactory dataAccessFactory)
         {
@@ -23,6 +27,12 @@ namespace BLL.Services
             if (taskDTO == null)
                 throw new ArgumentNullException(nameof(taskDTO), "Task data is required.");
 
+            if (!AllowedStatuses.Contains(taskDTO.Status))
+                throw new ApplicationException("Invalid status. Allowed values: Pending, InProgress, Completed, Overdue.");
+
+            if (!AllowedPriorities.Contains(taskDTO.Priority))
+                throw new ApplicationException("Invalid priority. Allowed values: Low, Medium, High.");
+
             try
             {
                 var mapper = MapperConfig.GetMapper();
@@ -30,16 +40,11 @@ namespace BLL.Services
 
                 return dataAccessFactory.TaskDataAccess().Create(task);
             }
-            catch (InvalidOperationException ex)
+            catch 
             {
-                // Duplicate task title
-                throw new ApplicationException(ex.Message, ex);
+                throw;
             }
-            catch (Exception ex)
-            {
-                // Any other unexpected error
-                throw new ApplicationException("Task creation failed.", ex);
-            }
+           
         }
 
 

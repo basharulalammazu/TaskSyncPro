@@ -37,11 +37,6 @@ namespace BLL.Services
         }
 
 
-        public bool Delete(int id)
-        {
-            return dataAccessFactory.EmployeeDataAccess().Delete(id);
-        }
-
         public EmployeeDTO Find(int id)
         {
             var data = dataAccessFactory.EmployeeDataAccess().Find(id);
@@ -62,6 +57,30 @@ namespace BLL.Services
             return mapper.Map<List<EmployeeDTO>>(data);
         }
 
+        public bool Update(EmployeeDTO entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            try
+            {
+                var mapper = MapperConfig.GetMapper();
+                var dbEntity = mapper.Map<Employee>(entity);
+                return dataAccessFactory.EmployeeDataAccess().Update(dbEntity);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public bool Delete(int id)
+        {
+            return dataAccessFactory.EmployeeDataAccess().Delete(id);
+        }
+
+        /*
         public EmployeeDTO FindByUserEmail(string email)
         {
             var data = dataAccessFactory.EmployeeDataAccess().FindByUserEmail(email);
@@ -71,6 +90,7 @@ namespace BLL.Services
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<EmployeeDTO>(data);
         }
+        
 
         public List<EmployeeDTO> GetEmployeesWithTasks()
         {
@@ -82,6 +102,8 @@ namespace BLL.Services
             return mapper.Map<List<EmployeeDTO>>(data);
         }
 
+        
+
         public EmployeeDTO GetEmployeeWithTasks(int id)
         {
             var data = dataAccessFactory.EmployeeDataAccess().GetEmployeeWithTasks(id);
@@ -92,11 +114,25 @@ namespace BLL.Services
             return mapper.Map<EmployeeDTO>(data);
         }
 
-        public bool Update(EmployeeDTO entity)
+        */
+        public List<EmployeeDetailsDTO> GetEmployeeWithDetails()
         {
+            var data = dataAccessFactory.EmployeeDataAccess().GetEmployeeWithDetails();
+            if (data == null)
+                return null;
             var mapper = MapperConfig.GetMapper();
-            var dbEntity = mapper.Map<Employee>(entity);
-            return dataAccessFactory.EmployeeDataAccess().Update(dbEntity);
+            return mapper.Map<List<EmployeeDetailsDTO>>(data);
         }
+
+
+        public EmployeeDetailsDTO GetEmployeeWithDetails(int id)
+        {
+            var data = dataAccessFactory.EmployeeDataAccess().GetEmployeeWithDetails(id);
+            if (data == null)
+                return null;
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<EmployeeDetailsDTO>(data);
+        }
+
     }
 }

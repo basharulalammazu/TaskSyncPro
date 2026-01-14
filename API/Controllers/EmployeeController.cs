@@ -73,6 +73,8 @@ namespace API.Controllers
             return Ok(data);
         }
 
+        /*
+
         [HttpGet("ByEmail/{email}")]
         public IActionResult FindByUserEmail(string email)
         {
@@ -82,6 +84,7 @@ namespace API.Controllers
 
             return Ok(data);
         }
+        
 
         [HttpGet("WithTasks")]
         public IActionResult GetEmployeesWithTasks()
@@ -93,6 +96,8 @@ namespace API.Controllers
             return Ok(data);
         }
 
+        
+
         [HttpGet("WithTasks/{id}")]
         public IActionResult GetEmployeeWithTasks(int id)
         {
@@ -102,6 +107,7 @@ namespace API.Controllers
 
             return Ok(data);
         }
+        */
 
         [HttpPut("update")]
         public IActionResult Update(EmployeeDTO employee)
@@ -109,11 +115,50 @@ namespace API.Controllers
             if (employee == null)
                 return BadRequest(new { Message = "Invalid employee data." });
 
-            var result = service.Update(employee);
-            if (!result)
-                return NotFound(new { Message = "Employee not found or not updated." });
+            try
+            {
+                var result = service.Update(employee);
+                if (!result)
+                    return NotFound(new { Message = "Employee not found or not updated." });
 
-            return Ok(new { Message = "Employee updated successfully." });
+                return Ok(new { Message = "Employee updated successfully." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                // For things like "User does not exist" or "Team does not exist"
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (ApplicationException ex)
+            {
+                // For duplicate employee issues
+                return Conflict(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // Generic unexpected errors
+                return StatusCode(500, new { Message = "An error occurred.", Details = ex.Message });
+            }
+        }
+
+
+
+        [HttpGet("GetEmployeeWithDetails")]
+        public IActionResult GetEmployeeWithDetails()
+        {
+            var data = service.GetEmployeeWithDetails();
+            if (data == null || data.Count == 0)
+                return NotFound(new { Message = "No employees found." });
+
+            return Ok(data);
+        }
+
+        [HttpGet("GetEmployeeWithDetails/{id}")]
+        public IActionResult GetEmployeeWithDetails(int id)
+        {
+            var data = service.GetEmployeeWithDetails(id);
+            if (data == null)
+                return NotFound(new { Message = "Employee not found." });
+            return Ok(data);
         }
     }
 }

@@ -31,30 +31,21 @@ namespace API.Controllers
             {
                 return BadRequest(new { Message = ex.Message });
             }
-            catch (ApplicationException ex)
+            catch (InvalidOperationException ex)
             {
-                // Handles duplicate or business errors
                 return Conflict(new { Message = ex.Message });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Any unexpected errors
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex.Message);
             }
         }
 
 
-        [HttpDelete("delete/{id}")]
-        public IActionResult Delete(int id)
-        {
-            var result = service.Delete(id);
-            if (result)
-                return Ok(new { Message = "Task deleted successfully." });
 
-            return BadRequest(new { Message = "Task is not deleted." });
-        }
 
-        [HttpGet("find/{id}")]
+
+        [HttpGet("all/{id}")]
         public IActionResult Find(int id)
         {
             var data = service.Find(id);
@@ -75,6 +66,50 @@ namespace API.Controllers
                 return BadRequest(new { Message = "Something is wrong." });
 
             return Ok(data);
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update(TaskDTO entity)
+        {
+            if (entity == null)
+                return BadRequest(new { Message = "Invalid employee data." });
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var result = service.Update(entity);
+                if (result)
+                    return Ok(new { Message = "Task updated successfully." });
+
+                return BadRequest(new { Message = "Task is not updated." });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            catch (ApplicationException ex)
+            {
+                // Handles duplicate or business errors
+                return Conflict(new { Message = ex.Message });
+            }
+            catch (Exception)
+            {
+                // Any unexpected errors
+                return StatusCode(500, "Internal server error");
+            }
+
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = service.Delete(id);
+            if (result)
+                return Ok(new { Message = "Task deleted successfully." });
+
+            return BadRequest(new { Message = "Task is not deleted." });
         }
 
         [HttpGet("findByTitle/{title}")]
@@ -117,14 +152,6 @@ namespace API.Controllers
             return NotFound(new { Message = "Task not found." });
         }
 
-        [HttpPut("update")]
-        public IActionResult Update(TaskDTO entity)
-        {
-            var result = service.Update(entity);
-            if (result)
-                return Ok(new { Message = "Task updated successfully." });
-
-            return BadRequest(new { Message = "Task is not updated." });
-        }
+        
     }
 }

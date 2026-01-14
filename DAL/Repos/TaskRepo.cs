@@ -18,25 +18,32 @@ namespace DAL.Repos
 
         public bool Create(EF.Models.Task entity)
         {
-            // Check for duplicate title
-            if (GetTaskByTitle(entity.Title).Any())
+            // Duplicate title check
+            if (db.Tasks.Any(t => t.Title == entity.Title))
                 throw new InvalidOperationException("A task with this title already exists.");
 
-            // Check valid employee assignment
-            if (!db.Employees.Any(e => e.Id == entity.AssignedEmployeeId.Value))
-                throw new InvalidOperationException("Assigned employee does not exist.");
-            
+            // Assigned employee check (ONLY if assigned)
+            if (entity.AssignedEmployeeId.HasValue)
+            {
+                if (!db.Employees.Any(e => e.Id == entity.AssignedEmployeeId.Value))
+                    throw new InvalidOperationException("Assigned employee does not exist.");
+
+                // Same employee + same title
+                if (db.Tasks.Any(t =>
+                    t.AssignedEmployeeId == entity.AssignedEmployeeId &&
+                    t.Title == entity.Title))
+                    throw new InvalidOperationException("This employee is already assigned to this task.");
+            }
+
+            // Creator check
             if (!db.Users.Any(u => u.Id == entity.CreatedBy))
                 throw new InvalidOperationException("Creator user does not exist.");
-
-             // same title = same task
-
-            if (db.Tasks.Any(t => t.AssignedEmployeeId == entity.AssignedEmployeeId && t.Title == entity.Title))
-                throw new InvalidOperationException("This employee is already assigned to this task.");
 
             db.Tasks.Add(entity);
             return db.SaveChanges() > 0;
         }
+
+
 
 
         public bool Delete(int id)

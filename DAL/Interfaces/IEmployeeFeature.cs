@@ -7,8 +7,9 @@ namespace DAL.Interfaces
 {
     public interface IEmployeeFeature : IRepository<Employee>
     {
-        List<Employee> GetEmployeesWithTasks();
-        Employee GetEmployeeWithTasks(int id);
-        Employee FindByUserEmail(string email);
+      //  List<Employee> GetEmployeesWithTasks();
+        public Employee GetEmployeeWithDetails(int id);
+        public List<Employee> GetEmployeeWithDetails();
+
     }
 }

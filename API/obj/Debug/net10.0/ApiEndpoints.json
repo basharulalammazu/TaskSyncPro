@@ -127,22 +127,6 @@
   },
   {
     "ContainingType": "API.Controllers.EmployeeController",
-    "Method": "FindByUserEmail",
-    "RelativePath": "api/Employee/ByEmail/{email}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.EmployeeController",
     "Method": "Create",
     "RelativePath": "api/Employee/create",
     "HttpMethod": "POST",
@@ -175,6 +159,32 @@
   },
   {
     "ContainingType": "API.Controllers.EmployeeController",
+    "Method": "GetEmployeeWithDetails",
+    "RelativePath": "api/Employee/GetEmployeeWithDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.EmployeeController",
+    "Method": "GetEmployeeWithDetails",
+    "RelativePath": "api/Employee/GetEmployeeWithDetails/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.EmployeeController",
     "Method": "Update",
     "RelativePath": "api/Employee/update",
     "HttpMethod": "PUT",
@@ -184,32 +194,6 @@
       {
         "Name": "employee",
         "Type": "BLL.DTOs.EmployeeDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.EmployeeController",
-    "Method": "GetEmployeesWithTasks",
-    "RelativePath": "api/Employee/WithTasks",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.EmployeeController",
-    "Method": "GetEmployeeWithTasks",
-    "RelativePath": "api/Employee/WithTasks/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -317,25 +301,9 @@
   },
   {
     "ContainingType": "API.Controllers.TaskController",
-    "Method": "Create",
-    "RelativePath": "api/Task/create",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "task",
-        "Type": "BLL.DTOs.TaskDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.TaskController",
-    "Method": "Delete",
-    "RelativePath": "api/Task/delete/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "Find",
+    "RelativePath": "api/Task/all/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -349,9 +317,25 @@
   },
   {
     "ContainingType": "API.Controllers.TaskController",
-    "Method": "Find",
-    "RelativePath": "api/Task/find/{id}",
-    "HttpMethod": "GET",
+    "Method": "Create",
+    "RelativePath": "api/Task/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "task",
+        "Type": "TaskDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.TaskController",
+    "Method": "Delete",
+    "RelativePath": "api/Task/delete/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -431,7 +415,7 @@
     "Parameters": [
       {
         "Name": "entity",
-        "Type": "BLL.DTOs.TaskDTO",
+        "Type": "TaskDTO",
         "IsRequired": true
       }
     ],
