@@ -18,9 +18,9 @@ namespace DAL.Repos
 
         public User FindByEmailAndPassword(User user)
         {
-            return db.Users
-                .Include(u => u.Role)
-                .FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+            return (from u in db.Users.Include("Role")
+                    where u.Email == user.Email && u.Password == user.Password
+                    select u).SingleOrDefault();
         }
 
         public User Find(int id)
@@ -59,6 +59,12 @@ namespace DAL.Repos
 
         public bool Update(User user)
         {
+            if (db.Users.Any(u => u.Email == user.Email && u.Id != user.Id))
+                throw new Exception("Email already exists.");
+
+            if (db.Users.Any(u => u.PhoneNumber == user.PhoneNumber && u.Id != user.Id))
+                throw new Exception("Phone number already exists.");
+
             var dbUser = Find(user.Id);
             if (dbUser == null)
                 return false;

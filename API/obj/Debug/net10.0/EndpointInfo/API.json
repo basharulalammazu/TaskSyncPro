@@ -1168,7 +1168,7 @@
       }
     },
     "/api/User/update": {
-      "post": {
+      "put": {
         "tags": [
           "User"
         ],
@@ -1200,7 +1200,7 @@
       }
     },
     "/api/User/ByEmail/{email}": {
-      "post": {
+      "get": {
         "tags": [
           "User"
         ],
@@ -1222,7 +1222,7 @@
       }
     },
     "/api/User/ByPhoneNumber/{phoneNumber}": {
-      "post": {
+      "get": {
         "tags": [
           "User"
         ],

@@ -93,9 +93,18 @@ namespace BLL.Services
 
         public bool Update(UserDTO user)
         {
-            var mapper = MapperConfig.GetMapper();
-            var dbUser = mapper.Map<User>(user);
-            return dataAccessFactory.UserDataAccess().Update(dbUser);
+            try
+            {
+                var mapper = MapperConfig.GetMapper();
+                var dbUser = mapper.Map<User>(user);
+                return dataAccessFactory.UserDataAccess().Update(dbUser);
+            }
+
+            catch 
+            {
+                throw ;
+            }
+            
 
         }
 

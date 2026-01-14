@@ -96,26 +96,35 @@ namespace API.Controllers
             return BadRequest(new { Message = "User is not delete." });
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public IActionResult Update( UserDTO user)
         {
+
             if (user == null)
                 return BadRequest(new { Message = "Invalid user data." });
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = service.Update(user);
+            try
+            {
+                var result = service.Update(user);
 
-            if (result)
-                return Ok(new { Message = "User data updated successfully." });
+                if (result)
+                    return Ok(new { Message = "User data updated successfully." });
 
 
-            return BadRequest(new { Message = "User data is not updated." });
+                return BadRequest(new { Message = "User data is not updated." });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+            
         }
 
 
-        [HttpPost("ByEmail/{email}")]
+        [HttpGet("byEmail/{email}")]
         public IActionResult GetByEmail(string email)
         {
             var data = service.FindByEmail(email);
@@ -126,7 +135,7 @@ namespace API.Controllers
         }
 
 
-        [HttpPost("ByPhoneNumber/{phoneNumber}")]
+        [HttpGet("byPhoneNumber/{phoneNumber}")]
         public IActionResult GetByPhoneNumber(string phoneNumber)
         {
             var data = service.FindByPhoneNumber(phoneNumber);

@@ -641,7 +641,7 @@
     "ContainingType": "API.Controllers.UserController",
     "Method": "GetByEmail",
     "RelativePath": "api/User/ByEmail/{email}",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -657,7 +657,7 @@
     "ContainingType": "API.Controllers.UserController",
     "Method": "GetByPhoneNumber",
     "RelativePath": "api/User/ByPhoneNumber/{phoneNumber}",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -721,7 +721,7 @@
     "ContainingType": "API.Controllers.UserController",
     "Method": "Update",
     "RelativePath": "api/User/update",
-    "HttpMethod": "POST",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
