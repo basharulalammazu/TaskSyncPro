@@ -1,5 +1,6 @@
 ﻿using BLL.DTOs;
 using DAL;
+using DAL.EF.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace BLL.Services
         public bool Create(TaskLogDTO taskLogDTO)
         {
             var mapper = MapperConfig.GetMapper();
-            var taskLog = mapper.Map<DAL.EF.Models.TaskLog>(taskLogDTO);
+            var taskLog = mapper.Map<TaskLog>(taskLogDTO);
             return dataAccessFactory.TaskLogDataAccess().Create(taskLog);
         }
 

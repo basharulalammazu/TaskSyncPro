@@ -44,16 +44,9 @@ namespace DAL.Repos
         }
 
 
-
-
-        public bool Delete(int id)
+        public List<EF.Models.Task> Find()
         {
-            var dbRole = Find(id);
-            if (dbRole == null)
-                throw new System.Exception("This task is not found");
-
-            db.Tasks.Remove(dbRole);
-            return db.SaveChanges() > 0;
+            return db.Tasks.ToList();
         }
 
         public EF.Models.Task Find(int id)
@@ -65,38 +58,6 @@ namespace DAL.Repos
             return role;
         }
 
-        public List<EF.Models.Task> Find()
-        {
-            return db.Tasks.ToList();
-        }
-
-        public List<EF.Models.Task> GetTaskByTitle(string title)
-        {
-            return db.Tasks.Where(t => t.Title.ToLower().Contains(title.ToLower())).ToList();
-        }
-
-        public List<EF.Models.Task> GetTasksByPriority(string priority)
-        {
-            return db.Tasks
-                     .Where(t => t.Priority != null &&
-                                 t.Priority.ToLower().Contains(priority.ToLower()))
-                     .ToList();
-        }
-
-
-        public List<EF.Models.Task> GetTasksWithEmployee()
-        {
-            return (from t in db.Tasks.Include(ct => ct.AssignedEmployee)
-                    select t).ToList();
-        }
-
-
-        public List<EF.Models.Task> GetTaskWithEmployee(int id)
-        {
-            return (from t in db.Tasks
-                    where t.AssignedEmployee.Id == id
-                    select t).ToList();
-        }
 
         public bool Update(EF.Models.Task entity)
         {
@@ -146,10 +107,33 @@ namespace DAL.Repos
             return db.SaveChanges() > 0;
         }
 
-
-        List<EF.Models.Task> ITaskFeature.GetTaskWithEmployee(int id)
+        public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var dbRole = Find(id);
+            if (dbRole == null)
+                throw new System.Exception("This task is not found");
+
+            db.Tasks.Remove(dbRole);
+            return db.SaveChanges() > 0;
         }
+
+        public List<EF.Models.Task> GetTaskByTitle(string title)
+        {
+            return db.Tasks.Where(t => t.Title.ToLower().Contains(title.ToLower())).ToList();
+        }
+
+        public List<EF.Models.Task> GetTasksByPriority(string priority)
+        {
+            return db.Tasks
+                     .Where(t => t.Priority != null &&
+                                 t.Priority.ToLower().Contains(priority.ToLower()))
+                     .ToList();
+        }
+
+
+
+        
+
+
     }
 }

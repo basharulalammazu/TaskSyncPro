@@ -7,8 +7,6 @@ namespace DAL.Interfaces
 {
     public interface ITaskFeature : IRepository<EF.Models.Task>
     {
-        List<EF.Models.Task> GetTasksWithEmployee();
-        List<EF.Models.Task> GetTaskWithEmployee(int id);
         List<EF.Models.Task> GetTasksByPriority(string priority);
         List<EF.Models.Task> GetTaskByTitle(string title);
     }

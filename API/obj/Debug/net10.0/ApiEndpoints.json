@@ -381,8 +381,18 @@
   },
   {
     "ContainingType": "API.Controllers.TaskController",
+    "Method": "FindWithEmployee",
+    "RelativePath": "api/Task/findWithEmployee",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.TaskController",
     "Method": "FindEmployeeTask",
-    "RelativePath": "api/Task/findEmployeeTask/{id}",
+    "RelativePath": "api/Task/findWithEmployee/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -393,16 +403,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.TaskController",
-    "Method": "FindWithEmployee",
-    "RelativePath": "api/Task/findWithEmployee",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

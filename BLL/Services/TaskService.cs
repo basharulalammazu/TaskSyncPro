@@ -47,11 +47,14 @@ namespace BLL.Services
            
         }
 
-
-        public bool Delete(int id)
+        public bool Update(TaskDTO entity)
         {
-            return dataAccessFactory.TaskDataAccess().Delete(id);
+            var mapper = MapperConfig.GetMapper();
+            var task = mapper.Map<DAL.EF.Models.Task>(entity);
+            return dataAccessFactory.TaskDataAccess().Update(task);
         }
+
+        
 
         public TaskDTO Find(int id)
         {
@@ -69,6 +72,11 @@ namespace BLL.Services
 
         }
 
+        public bool Delete(int id)
+        {
+            return dataAccessFactory.TaskDataAccess().Delete(id);
+        }
+
         public List<TaskDTO> GetTaskByTitle(string title)
         {
             var data = dataAccessFactory.TaskDataAccess().GetTaskByTitle(title);
@@ -84,32 +92,6 @@ namespace BLL.Services
         }
 
 
-        public List<TaskDTO> GetTasksWithEmployee()
-        {
-            var data = dataAccessFactory.TaskDataAccess().GetTasksWithEmployee();
-            var mapper = MapperConfig.GetMapper();
-            return mapper.Map<List<TaskDTO>>(data);
-        }
-
-
-        public List<TaskDTO> GetTaskWithEmployee(int id)
-        {
-            var data = dataAccessFactory.TaskDataAccess().GetTaskWithEmployee(id);
-
-            if (data == null || data.Count == 0)
-                return null;
-
-            var mapper = MapperConfig.GetMapper();
-            return mapper.Map<List<TaskDTO>>(data);
-
-
-        }
-
-        public bool Update(TaskDTO entity)
-        {
-            var mapper = MapperConfig.GetMapper();
-            var task = mapper.Map<DAL.EF.Models.Task>(entity);
-            return dataAccessFactory.TaskDataAccess().Update(task);
-        }
+        
     }
 }

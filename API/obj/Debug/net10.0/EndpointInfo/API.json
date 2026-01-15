@@ -689,7 +689,7 @@
         }
       }
     },
-    "/api/Task/findEmployeeTask/{id}": {
+    "/api/Task/findWithEmployee/{id}": {
       "get": {
         "tags": [
           "Task"

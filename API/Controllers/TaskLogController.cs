@@ -19,7 +19,7 @@ namespace API.Controllers
 
         // CREATE
         [HttpPost("create")]
-        public IActionResult Create( TaskLogDTO taskLogDTO)
+        public IActionResult Create(TaskLogDTO taskLogDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -51,7 +51,7 @@ namespace API.Controllers
         }
 
         // GET BY ID
-        [HttpGet("{id}")]
+        [HttpGet("all/{id}")]
         public IActionResult Get(int id)
         {
             try

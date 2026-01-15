@@ -5,10 +5,8 @@ using System.Text;
 
 namespace BLL.DTOs
 {
-    public class TeamEmployeeDTO
+    public class TeamEmployeeDTO : TeamDTO
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public List<EmployeeDTO> Employees { get; set; }
 
         public TeamEmployeeDTO()

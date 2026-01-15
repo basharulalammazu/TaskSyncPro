@@ -131,27 +131,6 @@ namespace API.Controllers
 
             return NotFound(new { Message = "No tasks found." });
         }
-
-        [HttpGet("findWithEmployee")]
-        public IActionResult FindWithEmployee()
-        {
-            var data = service.GetTasksWithEmployee();
-            if (data != null)
-                return Ok(data);
-
-            return NotFound(new { Message = "No tasks found." });
-        }
-
-        [HttpGet("findEmployeeTask/{id}")]
-        public IActionResult FindEmployeeTask(int id)
-        {
-            var data = service.GetTaskWithEmployee(id);
-            if (data != null)
-                return Ok(data);
-
-            return NotFound(new { Message = "Task not found." });
-        }
-
         
     }
 }

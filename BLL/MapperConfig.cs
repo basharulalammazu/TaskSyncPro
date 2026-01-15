@@ -22,6 +22,7 @@ namespace BLL
             cfg.CreateMap<Role, UserRoleDTO>().ReverseMap();
             cfg.CreateMap<Team, TeamEmployeeDTO>().ReverseMap();
             cfg.CreateMap<Employee, EmployeeDetailsDTO>().ReverseMap();
+            cfg.CreateMap<DAL.EF.Models.Task, TaskEmployeeDTO>().ReverseMap();
 
         });
         public static Mapper GetMapper()
