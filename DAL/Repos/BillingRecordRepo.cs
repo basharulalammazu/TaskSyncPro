@@ -18,7 +18,6 @@ namespace DAL.Repos
 
         public bool Create(BillingRecord br) 
         { 
-
             db.BillingRecords.Add(br);
             return db.SaveChanges() > 0;
         }
@@ -47,9 +46,6 @@ namespace DAL.Repos
         public bool Update(BillingRecord br)
         {
             var ex = Find(br.Id);
-            if (ex == null)
-                throw new KeyNotFoundException("Billing record not found.");
-
             db.Entry(ex).CurrentValues.SetValues(br);
             return db.SaveChanges() > 0;
         }

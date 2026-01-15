@@ -22,6 +22,9 @@ namespace BLL.Services
             if (billingRecordDTO.Amount <= 0)
                 throw new Exception("Invalid billing amount");
 
+            if (dataAccessFactory.TaskDataAccess().Find(billingRecordDTO.TaskId) == null)
+                throw new Exception("Invalid TaskId. Task does not exist.");
+
             var mapper = MapperConfig.GetMapper();
             var data = mapper.Map<BillingRecord>(billingRecordDTO);
 
@@ -61,6 +64,11 @@ namespace BLL.Services
             if (billingRecordDTO.Amount <= 0)
                 throw new ArgumentException("Billing amount must be greater than zero.");
 
+            if (dataAccessFactory.BillingDataAccess().Find(billingRecordDTO.TaskId) == null)
+                throw new KeyNotFoundException("Billing record not found.");
+
+            if (dataAccessFactory.TaskDataAccess().Find(billingRecordDTO.TaskId) == null)
+                throw new Exception("Invalid TaskId. Task does not exist.");
             try
             {
                 var mapper = MapperConfig.GetMapper();
@@ -76,24 +84,24 @@ namespace BLL.Services
 
 
 
-        public List<BillingRecordDTO> GetBillingRecordsWithTask()
+        public List<BillingTaskDTO> GetBillingRecordsWithTask()
         {
             var data = dataAccessFactory.BillingDataAccess().GetBillingRecordsWithTask();
             if (data == null)
                 return null;
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<List<BillingRecordDTO>>(data);
+            return mapper.Map<List<BillingTaskDTO>>(data);
         }
 
-        public BillingRecordDTO GetBillingRecordWithTask(int id)
+        public BillingTaskDTO GetBillingRecordWithTask(int id)
         {
             var data = dataAccessFactory.BillingDataAccess().GetBillingRecordWithTask(id);
             if (data == null)
                 return null;
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<BillingRecordDTO>(data);
+            return mapper.Map<BillingTaskDTO>(data);
         }
     }
 }

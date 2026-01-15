@@ -381,32 +381,6 @@
   },
   {
     "ContainingType": "API.Controllers.TaskController",
-    "Method": "FindWithEmployee",
-    "RelativePath": "api/Task/findWithEmployee",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.TaskController",
-    "Method": "FindEmployeeTask",
-    "RelativePath": "api/Task/findWithEmployee/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.TaskController",
     "Method": "Update",
     "RelativePath": "api/Task/update",
     "HttpMethod": "PUT",
@@ -423,8 +397,18 @@
   },
   {
     "ContainingType": "API.Controllers.TaskLogController",
+    "Method": "GetAll",
+    "RelativePath": "api/TaskLog/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.TaskLogController",
     "Method": "Get",
-    "RelativePath": "api/TaskLog/{id}",
+    "RelativePath": "api/TaskLog/all/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -435,16 +419,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.TaskLogController",
-    "Method": "GetAll",
-    "RelativePath": "api/TaskLog/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

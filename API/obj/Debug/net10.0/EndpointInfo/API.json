@@ -677,45 +677,6 @@
         }
       }
     },
-    "/api/Task/findWithEmployee": {
-      "get": {
-        "tags": [
-          "Task"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Task/findWithEmployee/{id}": {
-      "get": {
-        "tags": [
-          "Task"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "pattern": "^-?(?:0|[1-9]\\d*)$",
-              "type": [
-                "integer",
-                "string"
-              ],
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/TaskLog/create": {
       "post": {
         "tags": [
@@ -760,7 +721,7 @@
         }
       }
     },
-    "/api/TaskLog/{id}": {
+    "/api/TaskLog/all/{id}": {
       "get": {
         "tags": [
           "TaskLog"
