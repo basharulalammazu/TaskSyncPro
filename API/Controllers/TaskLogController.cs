@@ -27,6 +27,7 @@ namespace API.Controllers
             try
             {
                 var result = service.Create(taskLogDTO);
+
                 return Ok(new { Message = "Task log created successfully", Success = result });
             }
             catch (Exception ex)
@@ -80,6 +81,12 @@ namespace API.Controllers
                 var result = service.Update(taskLogDTO);
                 return Ok(new { Message = "Task log updated successfully", Success = result });
             }
+
+            catch (ArgumentException argEx)
+            {
+                return Conflict(new { Message = argEx.Message });
+            }
+
             catch (Exception ex)
             {
                 return BadRequest(new { Message = ex.Message });

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface IRole : IRepository<Role>
+    public interface IRole
     {
         List<Role> Find(string role);
     }

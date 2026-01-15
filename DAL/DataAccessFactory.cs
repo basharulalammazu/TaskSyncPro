@@ -17,6 +17,13 @@ namespace DAL
             this.db = db;
         }
 
+        // Generic repository access
+        public IRepository<T> GetRepo<T>() where T : class
+        {
+            return new Repository<T>(db);
+        }
+
+        // Feature-specific repositories
         public IBillingFeature BillingDataAccess()
         {
             return new BillingRecordRepo(db);

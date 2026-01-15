@@ -5,11 +5,13 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface ITeamFeature : IRepository<Team>
+    public interface ITeamFeature 
     {
         List<Team> GetTeamsWithEmployees();
         Team GetTeamWithEmployee(int id);
-        List<Team> Find(string name);
+        public List<Team> Find(string name);
+        public bool Find(int id, string name);
+        public Team SearchByName(string name);
 
     }
 }

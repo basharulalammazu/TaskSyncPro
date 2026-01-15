@@ -5,8 +5,9 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface ITaskLogFeature : IRepository<TaskLog>
+    public interface ITaskLogFeature
     {
+        public bool TaskLogExists(int id, int taskId);
         List<TaskLog> GetTaskLogsByTaskId(int taskId);
     }
 }

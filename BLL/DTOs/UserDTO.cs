@@ -29,7 +29,5 @@ namespace BLL.DTOs
         [Required(ErrorMessage = "Role is required.")]
 
         public int RoleId { get; set; }
-
-        public RoleDTO? Role { get; set; }
     }
 }

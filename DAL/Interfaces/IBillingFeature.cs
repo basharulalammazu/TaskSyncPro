@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface IBillingFeature : IRepository<BillingRecord>
+    public interface IBillingFeature 
     {
         List<BillingRecord> GetBillingRecordsWithTask();
         BillingRecord GetBillingRecordWithTask(int id);

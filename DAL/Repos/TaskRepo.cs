@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DAL.Repos
 {
-    internal class TaskRepo : IRepository<EF.Models.Task>, ITaskFeature
+    internal class TaskRepo : ITaskFeature
     {
         private readonly TaskSyncDbContext db;
         public TaskRepo(TaskSyncDbContext db)
@@ -16,110 +16,31 @@ namespace DAL.Repos
             this.db = db;
         }
 
-        public bool Create(EF.Models.Task entity)
-        {
-            // Duplicate title check
-            if (db.Tasks.Any(t => t.Title == entity.Title))
-                throw new InvalidOperationException("A task with this title already exists.");
-
-            // Assigned employee check (ONLY if assigned)
-            if (entity.AssignedEmployeeId.HasValue)
-            {
-                if (!db.Employees.Any(e => e.Id == entity.AssignedEmployeeId.Value))
-                    throw new InvalidOperationException("Assigned employee does not exist.");
-
-                // Same employee + same title
-                if (db.Tasks.Any(t =>
-                    t.AssignedEmployeeId == entity.AssignedEmployeeId &&
-                    t.Title == entity.Title))
-                    throw new InvalidOperationException("This employee is already assigned to this task.");
-            }
-
-            // Creator check
-            if (!db.Users.Any(u => u.Id == entity.CreatedBy))
-                throw new InvalidOperationException("Creator user does not exist.");
-
-            db.Tasks.Add(entity);
-            return db.SaveChanges() > 0;
-        }
-
-
-        public List<EF.Models.Task> Find()
-        {
-            return db.Tasks.ToList();
-        }
-
-        public EF.Models.Task Find(int id)
-        {
-            var role = db.Tasks.Find(id);
-            if (role == null)
-                throw new System.Exception("This role is not found");
-
-            return role;
-        }
-
-
-        public bool Update(EF.Models.Task entity)
-        {
-            //  Find existing task
-            var dbTask = Find(entity.Id);
-            if (dbTask == null)
-                throw new InvalidOperationException("This task is not found.");
-
-            //  Check for duplicate title (ignore the current task itself)
-            if (db.Tasks.Any(t => t.Title.ToLower() == entity.Title.ToLower() && t.Id != entity.Id))
-                throw new InvalidOperationException("A task with this title already exists.");
-
-            // Check assigned employee exists (if assigned)
-            if (entity.AssignedEmployeeId.HasValue)
-            {
-                bool employeeExists = db.Employees.Any(e => e.Id == entity.AssignedEmployeeId.Value);
-                if (!employeeExists)
-                    throw new InvalidOperationException("Assigned employee does not exist.");
-
-                //  Ensure the employee is not already assigned to the same task (different task)
-                bool alreadyAssigned = db.Tasks.Any(t =>
-                    t.AssignedEmployeeId == entity.AssignedEmployeeId &&
-                    t.Title.ToLower() == entity.Title.ToLower() &&
-                    t.Id != entity.Id);
-
-                if (alreadyAssigned)
-                    throw new InvalidOperationException("This employee is already assigned to this task.");
-            }
-
-            // Check creator exists
-            if (!db.Users.Any(u => u.Id == entity.CreatedBy))
-                throw new InvalidOperationException("Creator user does not exist.");
-
-            // Update task properties
-            dbTask.Title = entity.Title;
-            dbTask.Description = entity.Description;
-            dbTask.Priority = entity.Priority;
-            dbTask.Status = entity.Status;
-            dbTask.AssignedEmployeeId = entity.AssignedEmployeeId;
-            dbTask.DueDate = entity.DueDate;
-            dbTask.CreatedAt = entity.CreatedAt;
-            dbTask.CompletedAt = entity.CompletedAt;
-
-            db.Entry(dbTask).CurrentValues.SetValues(entity);
-
-            // 7️⃣ Save changes
-            return db.SaveChanges() > 0;
-        }
-
-        public bool Delete(int id)
-        {
-            var dbRole = Find(id);
-            if (dbRole == null)
-                throw new System.Exception("This task is not found");
-
-            db.Tasks.Remove(dbRole);
-            return db.SaveChanges() > 0;
-        }
-
+        
         public List<EF.Models.Task> GetTaskByTitle(string title)
         {
             return db.Tasks.Where(t => t.Title.ToLower().Contains(title.ToLower())).ToList();
+        }
+
+        public EF.Models.Task SearchTaskByTitle(string title)
+        {
+            return db.Tasks.Where(t => t.Title.ToLower() == title.ToLower()).FirstOrDefault();
+        }
+
+
+
+        public bool TitleExistsForOtherTask(string title, int id)
+        {
+            return db.Tasks.Any(t => t.Title.ToLower() == title.ToLower() && t.Id != id);
+
+        }
+
+        public bool ExistsForEmployeeExcludingTask(string title, int? employeeId, int taskId)
+        {
+            if (employeeId == null)
+                return false;
+
+            return db.Tasks.Any(t =>t.AssignedEmployeeId == employeeId && t.Title == title && t.Id != taskId);
         }
 
         public List<EF.Models.Task> GetTasksByPriority(string priority)
@@ -130,10 +51,9 @@ namespace DAL.Repos
                      .ToList();
         }
 
-
-
-        
-
-
+        public bool ExistsForEmployee(string title, int? employeeId)
+        {
+            return db.Tasks.Any(t =>t.AssignedEmployeeId == employeeId && t.Title == title);
+        }
     }
 }

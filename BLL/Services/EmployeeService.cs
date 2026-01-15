@@ -19,27 +19,31 @@ namespace BLL.Services
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
 
-            try
-            {
-                var mapper = MapperConfig.GetMapper();
-                var dbEntity = mapper.Map<Employee>(entity);
+            if (dataAccessFactory.GetRepo<User>().Find(entity.UserId) == null)
+                throw new ArgumentException("Invalid UserId: User does not exist.");
 
-                return dataAccessFactory.EmployeeDataAccess().Create(dbEntity);
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw new ApplicationException(ex.Message, ex);
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException("Employee creation failed.", ex);
-            }
+            if (dataAccessFactory.GetRepo<Team>().Find(entity.TeamId) == null)
+                throw new ArgumentException("Invalid TeamId: Team does not exist.");
+
+            // Check if the User already has an Employee
+            if (dataAccessFactory.EmployeeDataAccess().ExistsForUser(entity.UserId))
+                throw new InvalidOperationException("Employee already exists for this user.");
+
+            // Check if the Team already has the same Designation
+            if (dataAccessFactory.EmployeeDataAccess().ExistsForTeamDesignation(entity.TeamId, entity.Designation))
+                throw new InvalidOperationException("Duplicate designation in the same team.");
+           
+            var mapper = MapperConfig.GetMapper();
+            var dbEntity = mapper.Map<Employee>(entity);
+
+            return dataAccessFactory.GetRepo<Employee>().Create(dbEntity);
+
         }
 
 
         public EmployeeDTO Find(int id)
         {
-            var data = dataAccessFactory.EmployeeDataAccess().Find(id);
+            var data = dataAccessFactory.GetRepo<Employee>().Find(id);
             if (data == null)
                 return null;
 
@@ -49,7 +53,7 @@ namespace BLL.Services
 
         public List<EmployeeDTO> Find()
         {
-            var data = dataAccessFactory.EmployeeDataAccess().Find();
+            var data = dataAccessFactory.GetRepo<Employee>().Find();
             if (data == null || data.Count == 0)
                 return new List<EmployeeDTO>();
 
@@ -62,22 +66,22 @@ namespace BLL.Services
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
 
-            try
-            {
-                var mapper = MapperConfig.GetMapper();
-                var dbEntity = mapper.Map<Employee>(entity);
-                return dataAccessFactory.EmployeeDataAccess().Update(dbEntity);
-            }
-            catch
-            {
-                throw;
-            }
+            if (dataAccessFactory.GetRepo<User>().Find(entity.UserId) == null)
+                throw new ArgumentException("Invalid UserId: User does not exist.");
+
+            if (dataAccessFactory.GetRepo<Team>().Find(entity.TeamId) == null)
+                throw new ArgumentException("Invalid TeamId: Team does not exist.");
+
+
+            var mapper = MapperConfig.GetMapper();
+            var dbEntity = mapper.Map<Employee>(entity);
+            return dataAccessFactory.GetRepo<Employee>().Update(dbEntity);
         }
 
 
         public bool Delete(int id)
         {
-            return dataAccessFactory.EmployeeDataAccess().Delete(id);
+            return dataAccessFactory.GetRepo<Employee>().Delete(id);
         }
 
         /*

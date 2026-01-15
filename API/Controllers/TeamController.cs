@@ -106,6 +106,9 @@ namespace API.Controllers
             try
             {
                 var result = service.Delete(id);
+                if (!result)
+                    return BadRequest(new { Message = "Failed to delete team." });
+
                 return Ok(new { Message = "Team deleted successfully", Success = result });
             }
             catch (Exception ex)

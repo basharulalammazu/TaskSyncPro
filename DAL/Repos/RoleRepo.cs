@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Repos
 {
-    internal class RoleRepo : IRepository<DAL.EF.Models.Role>, IRole
+    internal class RoleRepo : IRole
     {
         private readonly TaskSyncDbContext db;
         public RoleRepo(TaskSyncDbContext db)
@@ -15,26 +15,6 @@ namespace DAL.Repos
             this.db = db;
         }
 
-        public bool Create(Role entity)
-        {
-            var existingRoles = Find(entity.Name);
-            if (existingRoles.Count > 0)
-                return false;
-
-            db.Roles.Add(entity);
-            return db.SaveChanges() > 0;
-
-        }
-
-        public bool Delete(int id)
-        {
-            var dbRole = Find(id);
-            if (dbRole == null)
-                throw new System.Exception("This role is not found");
-
-            db.Roles.Remove(dbRole);
-            return db.SaveChanges() > 0;
-        }
 
         public Role Find(int id)
         {
@@ -42,11 +22,6 @@ namespace DAL.Repos
         }
 
 
-        public List<Role> Find()
-        {
-            return db.Roles.ToList();
-            
-        }
 
         public List<Role> Find(string role)
         {
@@ -57,16 +32,6 @@ namespace DAL.Repos
             return data;
         }
 
-        public bool Update(Role entity)
-        {
-            var dbObj = Find(entity.Id);
 
-            if (dbObj == null)
-                return false;
-
-            dbObj.Id = entity.Id;
-            dbObj.Name = entity.Name;
-            return db.SaveChanges() > 0;
-        }
     }
 }

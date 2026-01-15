@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Repos
 {
-    internal class TaskLogRepo : IRepository<TaskLog>, ITaskLogFeature
+    internal class TaskLogRepo : ITaskLogFeature
     {
         private readonly TaskSyncDbContext db;
         public TaskLogRepo(TaskSyncDbContext db) 
@@ -51,6 +51,11 @@ namespace DAL.Repos
             db.Entry(ex).CurrentValues.SetValues(log);
             return db.SaveChanges() > 0;
 
+        }
+
+        public bool TaskLogExists(int id, int taskId)
+        {
+            return db.TaskLogs.Any(l => l.Id != id && l.TaskItemId == taskId);
         }
 
         public List<TaskLog> GetTaskLogsByTaskId(int taskId)

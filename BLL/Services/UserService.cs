@@ -34,36 +34,17 @@ namespace BLL.Services
         }
 
 
-        public List<UserDTO> Find()
-        {
-            var dbData = dataAccessFactory.UserDataAccess().Find();
-            if (dbData == null)
-                return null;
-
-            var mapper = MapperConfig.GetMapper();
-            var dtoData = mapper.Map<List<UserDTO>>(dbData);
-            return dtoData;
-
-        }
-
-        public UserDTO Find(int id)
-        {
-            var dbData = dataAccessFactory.UserDataAccess().Find(id);
-            if (dbData == null)
-                return null;
-
-            var mapper = MapperConfig.GetMapper();
-            var dtoData = mapper.Map<UserDTO>(dbData);
-            return dtoData;
-        }
-
-
 
         public bool Create(UserDTO userDTO)
         {
             if (userDTO == null)
                 throw new ArgumentNullException(nameof(userDTO));
 
+            if (dataAccessFactory.UserDataAccess().FindByEmail(userDTO.Email) != null)
+                throw new ApplicationException("Email already exists.");
+
+            if (dataAccessFactory.UserDataAccess().FindByPhoneNumber(userDTO.PhoneNumber) != null)
+                throw new ApplicationException("Phone number already exists.");
 
             try
             {
@@ -71,7 +52,7 @@ namespace BLL.Services
                 var user = mapper.Map<User>(userDTO);
                 user.Password = PasswordGenerator.GeneratePassword(4);
 
-                return dataAccessFactory.UserDataAccess().Create(user) && EmailService.SendUserCredentials(user.Email, user.Name, user.Password, user.PhoneNumber);
+                return dataAccessFactory.GetRepo<User>().Create(user) && EmailService.SendUserCredentials(user.Email, user.Name, user.Password, user.PhoneNumber);
 
             }
             catch (InvalidOperationException ex)
@@ -85,27 +66,60 @@ namespace BLL.Services
         }
 
 
-
-        public bool Delete(int id)
+        public List<UserDTO> Find()
         {
-            return dataAccessFactory.UserDataAccess().Delete(id);
+            var dbData = dataAccessFactory.GetRepo<User>().Find();
+            if (dbData == null)
+                return null;
+
+            var mapper = MapperConfig.GetMapper();
+            var dtoData = mapper.Map<List<UserDTO>>(dbData);
+            return dtoData;
+
         }
+
+        public UserDTO Find(int id)
+        {
+            var dbData = dataAccessFactory.GetRepo<User>().Find(id);
+            if (dbData == null)
+                return null;
+
+            var mapper = MapperConfig.GetMapper();
+            var dtoData = mapper.Map<UserDTO>(dbData);
+            return dtoData;
+        }
+
+
+     
 
         public bool Update(UserDTO user)
         {
-            try
-            {
-                var mapper = MapperConfig.GetMapper();
-                var dbUser = mapper.Map<User>(user);
-                return dataAccessFactory.UserDataAccess().Update(dbUser);
-            }
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
 
-            catch 
-            {
-                throw ;
-            }
-            
+            if (Find(user.Id) == null)
+                throw new InvalidOperationException("User not found.");
 
+            if (dataAccessFactory.UserDataAccess().IsEmailAlreadyUsed(user.Id, user.Email))
+                throw new InvalidOperationException("Email already exists.");
+
+            if (dataAccessFactory.UserDataAccess().IsPhoneNumberAlreadyUsed(user.Id, user.PhoneNumber))
+                throw new InvalidOperationException("Phone number already exists.");
+
+
+            var mapper = MapperConfig.GetMapper();
+            var dbUser = mapper.Map<User>(user);
+            return dataAccessFactory.GetRepo<User>().Update(dbUser);
+        }
+
+
+
+        public bool Delete(int id)
+        {
+            if (Find(id) == null)
+                throw new InvalidOperationException("User not found.");
+
+            return dataAccessFactory.GetRepo<User>().Delete(id);
         }
 
         public UserDTO FindByEmail(string email)
@@ -115,9 +129,8 @@ namespace BLL.Services
                 return null;
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<UserDTO>(dbData);   
+            return mapper.Map<UserDTO>(dbData);
         }
-
 
         public UserDTO FindByPhoneNumber(string phoneNumber)
         {

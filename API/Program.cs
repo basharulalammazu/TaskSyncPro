@@ -1,6 +1,7 @@
 using DAL;
 using DAL.EF;
 using DAL.Interfaces;
+using DAL.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +20,7 @@ builder.Services.AddScoped<BLL.Services.RoleService>();
 builder.Services.AddScoped<BLL.Services.TaskService>();
 builder.Services.AddScoped<BLL.Services.TeamService>();
 builder.Services.AddScoped<BLL.Services.UserService>();
-
+builder.Services.AddScoped(typeof(Repository<>));
 
 
 

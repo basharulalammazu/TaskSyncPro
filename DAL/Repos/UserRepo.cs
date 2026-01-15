@@ -24,61 +24,16 @@ namespace DAL.Repos
         }
 
 
-        public List<User> Find()
+        public bool IsEmailAlreadyUsed(int id, string email)
         {
-            return db.Users.ToList();
+            return db.Users.Any(u => u.Email == email && u.Id != id);
         }
 
-        public User Find(int id)
+        public bool IsPhoneNumberAlreadyUsed(int id, string phoneNumber)
         {
-            return db.Users.Find(id);
+            return db.Users.Any(u => u.PhoneNumber == phoneNumber && u.Id != id);
         }
 
-        public bool Create(User user)
-        {
-            if (FindByEmail(user.Email) != null)
-                throw new InvalidOperationException("Email already exists.");
-
-            if (FindByPhoneNumber(user.PhoneNumber) != null)
-                throw new InvalidOperationException("Phone number already exists.");
-
-            db.Users.Add(user);
-            return db.SaveChanges() > 0;
-        }
-
-
-
-        public bool Delete(int id)
-        {
-            var dbUser = db.Users.Find(id);
-            if (dbUser == null)
-                return false;
-
-            db.Users.Remove(dbUser);
-            return db.SaveChanges() > 0;
-        }
-
-        public bool Update(User user)
-        {
-            if (db.Users.Any(u => u.Email == user.Email && u.Id != user.Id))
-                throw new Exception("Email already exists.");
-
-            if (db.Users.Any(u => u.PhoneNumber == user.PhoneNumber && u.Id != user.Id))
-                throw new Exception("Phone number already exists.");
-
-            var dbUser = Find(user.Id);
-            if (dbUser == null)
-                return false;
-
-            dbUser.Name = user.Name;
-            dbUser.Email = user.Email;
-            dbUser.PhoneNumber = user.PhoneNumber;
-            dbUser.Password = user.Password;
-            dbUser.RoleId = user.RoleId;
-            dbUser.IsActive = user.IsActive;
-            return db.SaveChanges() > 0;
-
-        }
 
         public User FindByEmail(string email)
         {

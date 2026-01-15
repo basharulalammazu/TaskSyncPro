@@ -1553,16 +1553,6 @@
               "string"
             ],
             "format": "int32"
-          },
-          "role": {
-            "oneOf": [
-              {
-                "type": "null"
-              },
-              {
-                "$ref": "#/components/schemas/RoleDTO"
-              }
-            ]
           }
         }
       },

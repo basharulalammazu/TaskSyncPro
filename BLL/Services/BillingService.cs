@@ -22,24 +22,18 @@ namespace BLL.Services
             if (billingRecordDTO.Amount <= 0)
                 throw new Exception("Invalid billing amount");
 
-            if (dataAccessFactory.TaskDataAccess().Find(billingRecordDTO.TaskId) == null)
+            if (dataAccessFactory.GetRepo<DAL.EF.Models.Task>().Find(billingRecordDTO.TaskId) == null)
                 throw new Exception("Invalid TaskId. Task does not exist.");
 
             var mapper = MapperConfig.GetMapper();
             var data = mapper.Map<BillingRecord>(billingRecordDTO);
 
-            return dataAccessFactory.BillingDataAccess().Create(data);
-        }
-
-
-        public bool Delete(int id)
-        {
-            return dataAccessFactory.BillingDataAccess().Delete(id);
+            return dataAccessFactory.GetRepo<BillingRecord>().Create(data);
         }
 
         public BillingRecordDTO Find(int id)
         {
-            var data = dataAccessFactory.BillingDataAccess().Find(id);
+            var data = dataAccessFactory.GetRepo<BillingRecord>().Find(id);
             
             if (data == null)
                return null;
@@ -50,7 +44,7 @@ namespace BLL.Services
 
         public List<BillingRecordDTO> Find()
         {
-            var data = dataAccessFactory.BillingDataAccess().Find();
+            var data = dataAccessFactory.GetRepo<BillingRecord>().Find();
 
             if (data == null)
                 return null;
@@ -64,24 +58,28 @@ namespace BLL.Services
             if (billingRecordDTO.Amount <= 0)
                 throw new ArgumentException("Billing amount must be greater than zero.");
 
-            if (dataAccessFactory.BillingDataAccess().Find(billingRecordDTO.TaskId) == null)
+            if (dataAccessFactory.GetRepo<BillingRecord>().Find(billingRecordDTO.TaskId) == null)
                 throw new KeyNotFoundException("Billing record not found.");
 
-            if (dataAccessFactory.TaskDataAccess().Find(billingRecordDTO.TaskId) == null)
+            if (dataAccessFactory.GetRepo<DAL.EF.Models.Task>().Find(billingRecordDTO.TaskId) == null)
                 throw new Exception("Invalid TaskId. Task does not exist.");
-            try
-            {
+
+
                 var mapper = MapperConfig.GetMapper();
                 var data = mapper.Map<BillingRecord>(billingRecordDTO);
 
-                return dataAccessFactory.BillingDataAccess().Update(data);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                throw new ApplicationException("Billing record does not exist.", ex);
-            }
+                return dataAccessFactory.GetRepo<BillingRecord>().Update(data);
+
         }
 
+
+        public bool Delete(int id)
+        {
+            if (Find(id) == null)
+                throw new KeyNotFoundException("Billing record not found.");
+
+            return dataAccessFactory.GetRepo<BillingRecord>().Delete(id);
+        }
 
 
         public List<BillingTaskDTO> GetBillingRecordsWithTask()

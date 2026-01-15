@@ -20,30 +20,25 @@ namespace BLL.Services
 
         public bool Create(TeamDTO teamDTO)
         {
-            try
-            {
-                var mapper = MapperConfig.GetMapper();
-                var data = mapper.Map<Team>(teamDTO);
+            if (dataAccessFactory.TeamDataAccess().SearchByName(teamDTO.Name) != null)
+                throw new Exception("Team with the same name already exists.");
 
-                return dataAccessFactory.TeamDataAccess().Create(data);
-            }
-            catch 
-            {
-                throw;
-            }
-          
+            var mapper = MapperConfig.GetMapper();
+            var data = mapper.Map<Team>(teamDTO);
+
+            return dataAccessFactory.GetRepo<Team>().Create(data);
         }
 
         public List<TeamDTO> Find()
         {
-            var data = dataAccessFactory.TeamDataAccess().Find();
+            var data = dataAccessFactory.GetRepo<Team>().Find();
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<List<TeamDTO>>(data);
         }
 
         public TeamDTO Find(int id)
         {
-            var data = dataAccessFactory.TeamDataAccess().Find(id);
+            var data = dataAccessFactory.GetRepo<Team>().Find(id);
             if (data == null) 
                 return null;
 
@@ -53,16 +48,25 @@ namespace BLL.Services
 
         public bool Update(TeamDTO teamDTO)
         {
+            if (Find(teamDTO.Id) == null)
+                throw new Exception("Team is not found with this id");
+
+            if (dataAccessFactory.TeamDataAccess().Find(teamDTO.Id, teamDTO.Name))
+                throw new Exception("Team with the same name already exists.");
+            
             var mapper = MapperConfig.GetMapper();
             var data = mapper.Map<Team>(teamDTO);
 
-            return dataAccessFactory.TeamDataAccess().Update(data);
+            return dataAccessFactory.GetRepo<Team>().Update(data);
         }
 
 
         public bool Delete(int id)
         {
-            return dataAccessFactory.TeamDataAccess().Delete(id);
+            if (Find(id) == null)
+                throw new Exception("Team is not found with this id");
+
+            return dataAccessFactory.GetRepo<Team>().Delete(id);
         }
 
         public List<TeamEmployeeDTO> GetTeamsWithEmployees()

@@ -19,36 +19,36 @@ namespace BLL.Services
 
         public bool Create(RoleDTO entity)
         {
+            if (dataAccessFactory.RoleDataAccess().Find(entity.Name).Count > 0)
+                throw new Exception("Role already exists");
+
+
+
             var mapper = MapperConfig.GetMapper();
             var role = mapper.Map<Role>(entity);
-            var success = dataAccessFactory.RoleDataAccess().Create(role);
+            var success = dataAccessFactory.GetRepo<Role>().Create(role);
 
             if (!success)
                 return false;
 
             return true;
         }
-
-
-        public bool Delete(int id)
-        {
-           return dataAccessFactory.RoleDataAccess().Delete(id);
-        }
+       
 
         public RoleDTO Find(int id)
         {
-            var dbData = dataAccessFactory.RoleDataAccess().Find(id);
+            var dbData = dataAccessFactory.GetRepo<Role>().Find(id);
             if (dbData == null) 
                 return null;
 
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<RoleDTO>(dbData);
-        }
+        }   
 
 
         public List<RoleDTO> Find()
         {
-            var dbData = dataAccessFactory.RoleDataAccess().Find();
+            var dbData = dataAccessFactory.GetRepo<Role>().Find();
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<List<RoleDTO>>(dbData);
         }
@@ -64,7 +64,21 @@ namespace BLL.Services
 
         public bool Update(Role entity)
         {
-            return dataAccessFactory.RoleDataAccess().Update(entity);
+            if (Find(entity.Id) == null)
+                throw new Exception("Role not found");
+
+            if (Find(entity.Name).Count > 0)
+                throw new Exception("Role name already exists");
+
+            return dataAccessFactory.GetRepo<Role>().Update(entity);
+        }
+
+        public bool Delete(int id)
+        {
+            if (dataAccessFactory.GetRepo<Role>().Find(id) == null)
+                throw new Exception("Role not found");
+
+            return dataAccessFactory.GetRepo<Role>().Delete(id);
         }
     }
 }

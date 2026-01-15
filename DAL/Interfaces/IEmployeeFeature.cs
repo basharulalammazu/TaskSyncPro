@@ -5,11 +5,12 @@ using System.Text;
 
 namespace DAL.Interfaces
 {
-    public interface IEmployeeFeature : IRepository<Employee>
+    public interface IEmployeeFeature
     {
       //  List<Employee> GetEmployeesWithTasks();
         public Employee GetEmployeeWithDetails(int id);
         public List<Employee> GetEmployeeWithDetails();
-
+        public bool ExistsForUser(int userId);
+        public bool ExistsForTeamDesignation(int teamId, string designation);
     }
 }

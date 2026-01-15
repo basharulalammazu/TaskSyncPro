@@ -64,7 +64,7 @@ namespace API.Controllers
             {
                 var data = service.Create(user);
 
-                if (data == null)
+                if (!data )
                     return BadRequest(new { Message = "User could not be created." });
 
                 return Ok(new { Message = "User created successfully." });
@@ -77,9 +77,9 @@ namespace API.Controllers
             {
                 return BadRequest(new { Message = "User data is required." });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
 
@@ -87,13 +87,22 @@ namespace API.Controllers
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            var result = service.Delete(id);
+            try
+            {
+                var result = service.Delete(id);
 
-            if (result)
-                return Ok(new { Message = "User deleted successfully." });
+                if (result)
+                    return Ok(new { Message = "User deleted successfully." });
 
 
-            return BadRequest(new { Message = "User is not delete." });
+                return BadRequest(new { Message = "User is not delete." });
+            }
+
+            catch (Exception ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+
         }
 
         [HttpPut("update")]
