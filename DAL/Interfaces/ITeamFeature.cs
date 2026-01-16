@@ -12,6 +12,8 @@ namespace DAL.Interfaces
         public List<Team> Find(string name);
         public bool Find(int id, string name);
         public Team SearchByName(string name);
+        public Team GetTeamWithEmployeeTask(int id);
+        public List<Team> GetTeamWithEmployeeTask();
 
     }
 }

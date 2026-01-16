@@ -127,6 +127,38 @@
   },
   {
     "ContainingType": "API.Controllers.EmployeeController",
+    "Method": "FindByUserEmail",
+    "RelativePath": "api/Employee/ByEmail/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.EmployeeController",
+    "Method": "FindByPhoneNUmber",
+    "RelativePath": "api/Employee/ByPhoneNumber/{phoneNumber}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "phoneNumber",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.EmployeeController",
     "Method": "Create",
     "RelativePath": "api/Employee/create",
     "HttpMethod": "POST",
@@ -573,6 +605,32 @@
     "ContainingType": "API.Controllers.TeamController",
     "Method": "GetTeamsWithEmployees",
     "RelativePath": "api/Team/withEmployees/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.TeamController",
+    "Method": "GetTeamWithEmployeeTask",
+    "RelativePath": "api/Team/withEmployeeTask",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.TeamController",
+    "Method": "GetTeamWithEmployeeTask",
+    "RelativePath": "api/Team/withEmployeeTask/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

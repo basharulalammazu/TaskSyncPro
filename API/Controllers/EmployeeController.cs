@@ -73,41 +73,26 @@ namespace API.Controllers
             return Ok(data);
         }
 
-        /*
-
         [HttpGet("ByEmail/{email}")]
         public IActionResult FindByUserEmail(string email)
         {
-            var data = service.FindByUserEmail(email);
+            var data = service.FindByEmail(email);
             if (data == null)
                 return NotFound(new { Message = "Employee not found." });
 
             return Ok(data);
         }
-        
 
-        [HttpGet("WithTasks")]
-        public IActionResult GetEmployeesWithTasks()
+        [HttpGet("ByPhoneNumber/{phoneNumber}")]
+        public IActionResult FindByPhoneNUmber(string phoneNumber)
         {
-            var data = service.GetEmployeesWithTasks();
-            if (data == null || data.Count == 0)
-                return NotFound(new { Message = "No employees found." });
-
-            return Ok(data);
-        }
-
-        
-
-        [HttpGet("WithTasks/{id}")]
-        public IActionResult GetEmployeeWithTasks(int id)
-        {
-            var data = service.GetEmployeeWithTasks(id);
+            var data = service.FindByPhoneNumber(phoneNumber);
             if (data == null)
                 return NotFound(new { Message = "Employee not found." });
 
             return Ok(data);
         }
-        */
+
 
         [HttpPut("update")]
         public IActionResult Update(EmployeeDTO employee)

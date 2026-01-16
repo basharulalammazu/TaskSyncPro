@@ -148,7 +148,7 @@ namespace BLL.Services
             var dbData = dataAccessFactory.UserDataAccess().GetUsersWithRole();
 
             if (dbData == null || dbData.Count == 0)
-                return new List<UserRoleDTO>();
+                return null;
 
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<List<UserRoleDTO>>(dbData);

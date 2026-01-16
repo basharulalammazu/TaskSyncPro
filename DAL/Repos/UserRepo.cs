@@ -52,6 +52,5 @@ namespace DAL.Repos
             return db.Roles.Include(u => u.Users).ToList();
         }
 
-
     }
 }

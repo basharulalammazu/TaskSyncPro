@@ -1,6 +1,7 @@
 ﻿using DAL.EF;
 using DAL.EF.Models;
 using DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,13 +17,6 @@ namespace DAL.Repos
         }
 
 
-        public Role Find(int id)
-        {
-            return db.Roles.Find(id);
-        }
-
-
-
         public List<Role> Find(string role)
         {
             var data = (from r in db.Roles
@@ -31,7 +25,6 @@ namespace DAL.Repos
 
             return data;
         }
-
 
     }
 }

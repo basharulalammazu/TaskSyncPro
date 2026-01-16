@@ -40,14 +40,20 @@ namespace DAL.Repos
             return db.Teams.Include(t => t.Employees).FirstOrDefault(t => t.Id == id);
         }
 
-        public Employee GetEmployeeWithDetails(int id)
+        public Team GetTeamWithEmployeeTask(int id)
         {
-            return db.Employees.Include(e => e.User).Include(e => e.Team).Include(e => e.Tasks).FirstOrDefault(e => e.Id == id);
+            return db.Teams
+                    .Include(t => t.Employees)
+                    .ThenInclude(e => e.Tasks)
+                    .FirstOrDefault(t => t.Id == id);
         }
 
-        public List<Employee> GetEmployeeWithDetails()
+
+        public List<Team> GetTeamWithEmployeeTask()
         {
-            return db.Employees.Include(e => e.User).Include(e => e.Team).Include(e => e.Tasks).ToList();
+            return db.Teams
+                    .Include(t => t.Employees)
+                    .ThenInclude(e => e.Tasks).ToList();
         }
 
     }

@@ -136,7 +136,29 @@ namespace API.Controllers
         {
             var data = service.GetTeamsWithEmployees(id);
             if (data == null)
-                return NotFound(new { Message = "No teams with employees found" });
+                return NotFound(new {Message = "No teams with employees found" });
+
+            return Ok(data);
+        }
+
+        [HttpGet("withEmployeeTask")]
+        public IActionResult GetTeamWithEmployeeTask()
+        {
+            var data = service.GetTeamsWithEmployees();
+            if (data == null)
+                return BadRequest(new { Message = "Something is wrong" });
+            if (data.Count == 0)
+                return NotFound(new { Message = "No teams with employee tasks found" });
+
+            return Ok(data);
+        }
+
+        [HttpGet("withEmployeeTask/{id}")]
+        public IActionResult GetTeamWithEmployeeTask(int id)
+        {
+            var data = service.GetTeamsWithEmployees(id);
+            if (data == null)
+                return NotFound(new { Message = "No teams with employee tasks found" });
 
             return Ok(data);
         }

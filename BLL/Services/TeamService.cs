@@ -17,7 +17,6 @@ namespace BLL.Services
             this.dataAccessFactory = dataAccessFactory;
         }
 
-
         public bool Create(TeamDTO teamDTO)
         {
             if (dataAccessFactory.TeamDataAccess().SearchByName(teamDTO.Name) != null)
@@ -60,7 +59,6 @@ namespace BLL.Services
             return dataAccessFactory.GetRepo<Team>().Update(data);
         }
 
-
         public bool Delete(int id)
         {
             if (Find(id) == null)
@@ -69,22 +67,22 @@ namespace BLL.Services
             return dataAccessFactory.GetRepo<Team>().Delete(id);
         }
 
-        public List<TeamEmployeeDTO> GetTeamsWithEmployees()
+        public List<TeamEmployeeTaskDTO> GetTeamsWithEmployees()
         {
             var data = dataAccessFactory.TeamDataAccess().GetTeamsWithEmployees();
 
             var mapper = MapperConfig.GetMapper();
-            return  mapper.Map<List<TeamEmployeeDTO>>(data);
+            return  mapper.Map<List<TeamEmployeeTaskDTO>>(data);
         }
 
-
-
-        public TeamEmployeeDTO GetTeamsWithEmployees(int id)
+        public TeamEmployeeTaskDTO GetTeamsWithEmployees(int id)
         {
             var data = dataAccessFactory.TeamDataAccess().GetTeamWithEmployee(id);
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<TeamEmployeeDTO>(data);
+            return mapper.Map<TeamEmployeeTaskDTO>(data);
         }
+
+
     }
 }

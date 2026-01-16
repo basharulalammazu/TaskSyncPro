@@ -20,11 +20,16 @@ internal class EmployeeRepo : IEmployeeFeature
     {
         return db.Employees.Any(e => e.TeamId == teamId && e.Designation == designation);
     }
+
     public Employee FindByUserEmail(string email)
     {
         return db.Employees.Include(e => e.User).Include(e => e.Team).FirstOrDefault(e => e.User.Email == email);
     }
 
+    public Employee FindByUserPhoneNumber(string phoneNumber)
+    {
+        return db.Employees.Include(e => e.User).Include(e => e.Team).FirstOrDefault(e => e.User.PhoneNumber == phoneNumber);
+    }
     public Employee GetEmployeeWithDetails(int id)
     {
         return db.Employees .Include(e => e.User).Include(e => e.Team).Include(e => e.Tasks).FirstOrDefault(e => e.Id == id);

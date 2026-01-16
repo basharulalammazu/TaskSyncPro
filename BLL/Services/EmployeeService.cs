@@ -84,8 +84,8 @@ namespace BLL.Services
             return dataAccessFactory.GetRepo<Employee>().Delete(id);
         }
 
-        /*
-        public EmployeeDTO FindByUserEmail(string email)
+        
+        public EmployeeDTO FindByEmail(string email)
         {
             var data = dataAccessFactory.EmployeeDataAccess().FindByUserEmail(email);
             if (data == null)
@@ -94,6 +94,18 @@ namespace BLL.Services
             var mapper = MapperConfig.GetMapper();
             return mapper.Map<EmployeeDTO>(data);
         }
+
+        public EmployeeDTO FindByPhoneNumber(string phoneNumer)
+        {
+            var data = dataAccessFactory.EmployeeDataAccess().FindByUserPhoneNumber(phoneNumer);
+            if (data == null)
+                return null;
+
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<EmployeeDTO>(data);
+        }
+
+        /*
         
 
         public List<EmployeeDTO> GetEmployeesWithTasks()
