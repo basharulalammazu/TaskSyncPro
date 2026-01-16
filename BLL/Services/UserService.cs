@@ -24,14 +24,16 @@ namespace BLL.Services
         public async Task<UserDTO> LoginAsync(UserLoginDTO loginDTO)
         {
             var mapper = MapperConfig.GetMapper();
-            var dto = mapper.Map<User>(loginDTO);
-            dto.Password = PasswordGenerator.GeneratePassword();
-            var user =  dataAccessFactory.UserDataAccess().FindByEmailAndPassword(dto);
+            var userEntity = mapper.Map<User>(loginDTO);
+
+            var user = dataAccessFactory.UserDataAccess().FindByEmailAndPassword(userEntity);
+
             if (user == null)
                 return null;
 
             return mapper.Map<UserDTO>(user);
         }
+
 
 
 
