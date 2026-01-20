@@ -50,7 +50,7 @@ namespace API.Controllers
         }
 
         // GET BY ID
-        [HttpGet("{id}")]
+        [HttpGet("all/{id}")]
         public IActionResult Get(int id)
         {
             var data = service.Find(id);
