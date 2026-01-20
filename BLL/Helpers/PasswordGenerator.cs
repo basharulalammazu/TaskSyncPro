@@ -6,7 +6,7 @@ namespace BLL.Helpers
 {
     public class PasswordGenerator
     {
-        public static string GeneratePassword(int length = 12, bool includeUppercase = true, bool includeLowercase = true, bool includeDigits = true, bool includeSpecialChars = true)
+        public static string GeneratePassword(int length = 12, bool includeUppercase = true, bool includeLowercase = true, bool includeDigits = true, bool includeSpecialChars = false)
         {
             const string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string lower = "abcdefghijklmnopqrstuvwxyz";
