@@ -17,9 +17,9 @@ namespace API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserLoginDTO dto)
+        public IActionResult Login(UserLoginDTO dto)
         {
-            var user = await service.LoginAsync(dto);
+            var user = service.LoginAsync(dto);
             if (user == null)
                 return Unauthorized(new { message = "Invalid email or password" });
 

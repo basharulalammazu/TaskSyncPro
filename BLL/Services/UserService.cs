@@ -21,7 +21,7 @@ namespace BLL.Services
         }
 
 
-        public async Task<UserDTO> LoginAsync(UserLoginDTO loginDTO)
+        public UserDTO LoginAsync(UserLoginDTO loginDTO)
         {
             var mapper = MapperConfig.GetMapper();
             var userEntity = mapper.Map<User>(loginDTO);
