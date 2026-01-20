@@ -24,6 +24,8 @@ namespace API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+
+
             try
             {
                 var result = service.Create(billingRecordDTO);

@@ -1,8 +1,18 @@
 [
   {
     "ContainingType": "API.Controllers.BillingController",
+    "Method": "GetAll",
+    "RelativePath": "api/Billing/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.BillingController",
     "Method": "Get",
-    "RelativePath": "api/Billing/{id}",
+    "RelativePath": "api/Billing/all/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -13,16 +23,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API.Controllers.BillingController",
-    "Method": "GetAll",
-    "RelativePath": "api/Billing/all",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   },
   {

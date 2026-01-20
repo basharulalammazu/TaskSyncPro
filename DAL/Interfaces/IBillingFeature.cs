@@ -9,5 +9,7 @@ namespace DAL.Interfaces
     {
         List<BillingRecord> GetBillingRecordsWithTask();
         BillingRecord GetBillingRecordWithTask(int id);
+        public BillingRecord GetBillingRecordsByTask(int id);
+
     }
 }

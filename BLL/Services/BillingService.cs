@@ -20,10 +20,19 @@ namespace BLL.Services
         public bool Create(BillingRecordDTO billingRecordDTO)
         {
             if (billingRecordDTO.Amount <= 0)
-                throw new Exception("Invalid billing amount");
+                throw new Exception("Billing amount must be greater than zero.");
 
             if (dataAccessFactory.GetRepo<DAL.EF.Models.Task>().Find(billingRecordDTO.TaskId) == null)
                 throw new Exception("Invalid TaskId. Task does not exist.");
+
+            if (dataAccessFactory.GetRepo<User>().Find(billingRecordDTO.PaidById) == null)
+                throw new Exception("Invalid PaidById. Employee does not exist.");
+
+
+            if (dataAccessFactory.BillingDataAccess().GetBillingRecordsByTask(billingRecordDTO.TaskId) != null)
+                throw new Exception("Billing record for this TaskId already exists.");
+
+            
 
             var mapper = MapperConfig.GetMapper();
             var data = mapper.Map<BillingRecord>(billingRecordDTO);

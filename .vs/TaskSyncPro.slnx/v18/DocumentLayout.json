@@ -3,12 +3,36 @@
   "WorkspaceRootPath": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\bll\\services\\billingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|solutionrelative:bll\\services\\billingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12357D34-2A02-1ECD-BC6C-D84ADDC1A72E}|DAL\\DAL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\dal\\interfaces\\ibillingfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12357D34-2A02-1ECD-BC6C-D84ADDC1A72E}|DAL\\DAL.csproj|solutionrelative:dal\\interfaces\\ibillingfeature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12357D34-2A02-1ECD-BC6C-D84ADDC1A72E}|DAL\\DAL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\dal\\repos\\billingrecordrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12357D34-2A02-1ECD-BC6C-D84ADDC1A72E}|DAL\\DAL.csproj|solutionrelative:dal\\repos\\billingrecordrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\bll\\dtos\\billingrecorddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|solutionrelative:bll\\dtos\\billingrecorddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\rolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\teamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\bll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|solutionrelative:bll\\services\\taskservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -53,10 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{12357D34-2A02-1ECD-BC6C-D84ADDC1A72E}|DAL\\DAL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\dal\\ef\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12357D34-2A02-1ECD-BC6C-D84ADDC1A72E}|DAL\\DAL.csproj|solutionrelative:dal\\ef\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBFA08EA-AECE-205F-7B85-326FD0B81BAD}|API\\API.csproj|solutionrelative:api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5875EBB1-01BE-2D17-3613-D0BAD09CBB40}|BLL\\BLL.csproj|d:\\university\\semester 9\\advanced programming with .net\\project\\tasksyncpro\\bll\\helpers\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -136,48 +152,63 @@
         },
         {
           "DockedWidth": 469,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RoleController.cs",
-              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\RoleController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\RoleController.cs",
-              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\RoleController.cs",
-              "RelativeToolTip": "API\\Controllers\\RoleController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "IBillingFeature.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Interfaces\\IBillingFeature.cs",
+              "RelativeDocumentMoniker": "DAL\\Interfaces\\IBillingFeature.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Interfaces\\IBillingFeature.cs",
+              "RelativeToolTip": "DAL\\Interfaces\\IBillingFeature.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T15:33:27.528Z"
+              "WhenOpened": "2026-01-20T15:52:17.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BillingRecordRepo.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\BillingRecordRepo.cs",
+              "RelativeDocumentMoniker": "DAL\\Repos\\BillingRecordRepo.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\BillingRecordRepo.cs",
+              "RelativeToolTip": "DAL\\Repos\\BillingRecordRepo.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAtwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T15:48:21.851Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BillingService.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\BillingService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\BillingService.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\BillingService.cs",
+              "RelativeToolTip": "BLL\\Services\\BillingService.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAEwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T15:43:06.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BillingController.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\BillingController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BillingController.cs",
               "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\BillingController.cs",
               "RelativeToolTip": "API\\Controllers\\BillingController.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAmwHYAAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-20T15:33:25.34Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TeamService.cs",
-              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\TeamService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\TeamService.cs",
-              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\TeamService.cs",
-              "RelativeToolTip": "BLL\\Services\\TeamService.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAMwFkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T05:30:17.35Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "API.csproj",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\API.csproj",
               "RelativeDocumentMoniker": "API\\API.csproj",
@@ -189,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "ITaskFeature.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Interfaces\\ITaskFeature.cs",
               "RelativeDocumentMoniker": "DAL\\Interfaces\\ITaskFeature.cs",
@@ -201,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "TaskService.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\TaskService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\TaskService.cs",
@@ -209,7 +240,8 @@
               "RelativeToolTip": "BLL\\Services\\TaskService.cs",
               "ViewState": "AgIAAJgAAAAAAAAAAAAuwLAAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T14:03:32.115Z"
+              "WhenOpened": "2026-01-20T14:03:32.115Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -221,11 +253,12 @@
               "RelativeToolTip": "API\\Controllers\\TaskController.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAAcwIIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T14:01:51.336Z"
+              "WhenOpened": "2026-01-20T14:01:51.336Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "EmailService.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Helpers\\EmailService.cs",
               "RelativeDocumentMoniker": "BLL\\Helpers\\EmailService.cs",
@@ -237,19 +270,71 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\EmployeeController.cs",
               "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\EmployeeController.cs",
               "RelativeToolTip": "API\\Controllers\\EmployeeController.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAUwEEAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAEEAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T06:01:52.226Z"
+              "WhenOpened": "2026-01-16T06:01:52.226Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAuwJwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T06:19:49.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BillingRecordDTO.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\DTOs\\BillingRecordDTO.cs",
+              "RelativeDocumentMoniker": "BLL\\DTOs\\BillingRecordDTO.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\DTOs\\BillingRecordDTO.cs",
+              "RelativeToolTip": "BLL\\DTOs\\BillingRecordDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T15:38:50.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TeamService.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\TeamService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\TeamService.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\TeamService.cs",
+              "RelativeToolTip": "BLL\\Services\\TeamService.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAMwFkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-16T05:30:17.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RoleController.cs",
+              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\RoleController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\RoleController.cs",
+              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\RoleController.cs",
+              "RelativeToolTip": "API\\Controllers\\RoleController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T15:33:27.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "TeamController.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\TeamController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\TeamController.cs",
@@ -261,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "ITeamFeature.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Interfaces\\ITeamFeature.cs",
               "RelativeDocumentMoniker": "DAL\\Interfaces\\ITeamFeature.cs",
@@ -273,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "TeamRepo.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\TeamRepo.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\TeamRepo.cs",
@@ -285,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "PasswordGenerator.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Helpers\\PasswordGenerator.cs",
               "RelativeDocumentMoniker": "BLL\\Helpers\\PasswordGenerator.cs",
@@ -297,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "TaskRepo.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\TaskRepo.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\TaskRepo.cs",
@@ -309,19 +394,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\UserController.cs",
-              "ToolTip": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAuwJwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-16T06:19:49.81Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "BLL.csproj",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\BLL.csproj",
               "RelativeDocumentMoniker": "BLL\\BLL.csproj",
@@ -333,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "TaskDTO.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\DTOs\\TaskDTO.cs",
               "RelativeDocumentMoniker": "BLL\\DTOs\\TaskDTO.cs",
@@ -345,7 +418,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "Task.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\EF\\Models\\Task.cs",
               "RelativeDocumentMoniker": "DAL\\EF\\Models\\Task.cs",
@@ -357,7 +430,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\UserService.cs",
@@ -369,7 +442,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "UserLoginDTO.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\DTOs\\UserLoginDTO.cs",
               "RelativeDocumentMoniker": "BLL\\DTOs\\UserLoginDTO.cs",
@@ -381,7 +454,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "EmployeeService.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\Services\\EmployeeService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\EmployeeService.cs",
@@ -393,7 +466,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "IEmployeeFeature.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Interfaces\\IEmployeeFeature.cs",
               "RelativeDocumentMoniker": "DAL\\Interfaces\\IEmployeeFeature.cs",
@@ -405,7 +478,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "EmployeeRepo.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\EmployeeRepo.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\EmployeeRepo.cs",
@@ -417,7 +490,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "Repository.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\Repository.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\Repository.cs",
@@ -429,7 +502,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "UserRepo.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\UserRepo.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\UserRepo.cs",
@@ -441,7 +514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "RoleRepo.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\RoleRepo.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\RoleRepo.cs",
@@ -453,7 +526,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "TaskLogRepo.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\DAL\\Repos\\TaskLogRepo.cs",
               "RelativeDocumentMoniker": "DAL\\Repos\\TaskLogRepo.cs",
@@ -465,7 +538,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 31,
               "Title": "MapperConfig.cs",
               "DocumentMoniker": "D:\\University\\Semester 9\\ADVANCED PROGRAMMING WITH .NET\\Project\\TaskSyncPro\\BLL\\MapperConfig.cs",
               "RelativeDocumentMoniker": "BLL\\MapperConfig.cs",
