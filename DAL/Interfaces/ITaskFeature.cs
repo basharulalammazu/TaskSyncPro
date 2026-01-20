@@ -8,6 +8,7 @@ namespace DAL.Interfaces
     public interface ITaskFeature 
     {
         List<EF.Models.Task> GetTasksByPriority(string priority);
+        List<EF.Models.Task> GetTasksByStatus(string priority);
         List<EF.Models.Task> GetTaskByTitle(string title);
         public EF.Models.Task SearchTaskByTitle(string title);
         public bool TitleExistsForOtherTask(string title, int id);

@@ -13,6 +13,7 @@ namespace BLL.Services
     {
         private static readonly List<string> AllowedStatuses = new List<string> {"Pending", "InProgress","Completed","Overdue"};
         private static readonly List<string> AllowedPriorities = new List<string> {"Low", "Medium", "High"};
+
         private void ValidateTask(TaskDTO taskDTO, bool isUpdate = false)
         {
             if (taskDTO == null)
@@ -78,15 +79,16 @@ namespace BLL.Services
                 var emp = dataAccessFactory.GetRepo<Employee>().Find(taskDTO.AssignedEmployeeId.Value);
 
                 if (emp == null)
-                    throw new ApplicationException("Assigned employee does not exist.");
+                    throw new ApplicationException("Create user does not exist.");
 
                 if (dataAccessFactory.TaskDataAccess().ExistsForEmployee(taskDTO.Title, taskDTO.AssignedEmployeeId))
                     throw new ApplicationException("The assigned employee already has a task with the same title.");
             }
 
-            if (dataAccessFactory.GetRepo<Employee>().Find(taskDTO.CreatedBy) == null)
+            
+            if (dataAccessFactory.GetRepo<User>().Find(taskDTO.CreatedBy) == null && taskDTO.Status.ToLower() != "Pending")
                 throw new ApplicationException("Creator employee does not exist.");
-
+            
             var mapper = MapperConfig.GetMapper();
             var task = mapper.Map<DAL.EF.Models.Task>(taskDTO);
 
@@ -170,7 +172,14 @@ namespace BLL.Services
             return mapper.Map<List<TaskDTO>>(data);
         }
 
+        public List<TaskDTO> GetTasksByStatus(string status)
+        {
+            var data = dataAccessFactory.TaskDataAccess().GetTasksByStatus(status);
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<List<TaskDTO>>(data);
+        }
 
-        
+
+
     }
 }

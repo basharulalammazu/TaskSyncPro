@@ -67,22 +67,38 @@ namespace BLL.Services
             return dataAccessFactory.GetRepo<Team>().Delete(id);
         }
 
-        public List<TeamEmployeeTaskDTO> GetTeamsWithEmployees()
+        public List<TeamEmployeeDTO> GetTeamsWithEmployees()
         {
             var data = dataAccessFactory.TeamDataAccess().GetTeamsWithEmployees();
 
             var mapper = MapperConfig.GetMapper();
-            return  mapper.Map<List<TeamEmployeeTaskDTO>>(data);
+            return  mapper.Map<List<TeamEmployeeDTO>>(data);
         }
 
-        public TeamEmployeeTaskDTO GetTeamsWithEmployees(int id)
+        public TeamEmployeeDTO GetTeamsWithEmployees(int id)
         {
             var data = dataAccessFactory.TeamDataAccess().GetTeamWithEmployee(id);
 
             var mapper = MapperConfig.GetMapper();
-            return mapper.Map<TeamEmployeeTaskDTO>(data);
+            return mapper.Map<TeamEmployeeDTO>(data);
         }
 
+
+        public List<TeamEmployeeTaskDTO> GetTeamsWithEmployeesTask()
+        {
+            var data = dataAccessFactory.TeamDataAccess().GetTeamsWithEmployees();
+
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<List<TeamEmployeeTaskDTO>>(data);
+        }
+
+        public TeamEmployeeTaskDTO GetTeamsWithEmployeesTask(int id)
+        {
+            var data = dataAccessFactory.TeamDataAccess().GetTeamWithEmployeeTask(id);
+
+            var mapper = MapperConfig.GetMapper();
+            return mapper.Map<TeamEmployeeTaskDTO>(data);
+        }
 
     }
 }

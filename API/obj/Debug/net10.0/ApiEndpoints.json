@@ -397,6 +397,22 @@
   },
   {
     "ContainingType": "API.Controllers.TaskController",
+    "Method": "FindByStatus",
+    "RelativePath": "api/Task/findByStatus/{status}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.TaskController",
     "Method": "FindByTitle",
     "RelativePath": "api/Task/findByTitle/{title}",
     "HttpMethod": "GET",

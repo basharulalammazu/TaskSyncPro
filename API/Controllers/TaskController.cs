@@ -131,6 +131,17 @@ namespace API.Controllers
 
             return NotFound(new { Message = "No tasks found." });
         }
-        
+
+
+        [HttpGet("findByStatus/{status}")]
+        public IActionResult FindByStatus(string status)
+        {
+            var data = service.GetTasksByStatus(status);
+            if (data != null)
+                return Ok(data);
+
+            return NotFound(new { Message = "No tasks found." });
+        }
+
     }
 }

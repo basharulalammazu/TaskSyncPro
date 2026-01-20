@@ -51,6 +51,14 @@ namespace DAL.Repos
                      .ToList();
         }
 
+        public List<EF.Models.Task> GetTasksByStatus(string status)
+        {
+            return db.Tasks
+                     .Where(t => t.Status != null &&
+                                 t.Status.ToLower().Contains(status.ToLower()))
+                     .ToList();
+        }
+
         public bool ExistsForEmployee(string title, int? employeeId)
         {
             return db.Tasks.Any(t =>t.AssignedEmployeeId == employeeId && t.Title == title);

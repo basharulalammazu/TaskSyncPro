@@ -144,7 +144,7 @@ namespace API.Controllers
         [HttpGet("withEmployeeTask")]
         public IActionResult GetTeamWithEmployeeTask()
         {
-            var data = service.GetTeamsWithEmployees();
+            var data = service.GetTeamsWithEmployeesTask();
             if (data == null)
                 return BadRequest(new { Message = "Something is wrong" });
             if (data.Count == 0)
@@ -156,7 +156,7 @@ namespace API.Controllers
         [HttpGet("withEmployeeTask/{id}")]
         public IActionResult GetTeamWithEmployeeTask(int id)
         {
-            var data = service.GetTeamsWithEmployees(id);
+            var data = service.GetTeamsWithEmployeesTask(id);
             if (data == null)
                 return NotFound(new { Message = "No teams with employee tasks found" });
 
