@@ -60,5 +60,10 @@ namespace DAL
         {
             return new UserRepo(db);
         }
+
+        public IReports ReportDataAccess()
+        {
+            return new ReportRepo(db);
+        }
     }
 }

@@ -1,0 +1,230 @@
+﻿# TaskSyncPro
+
+![.NET](https://img.shields.io/badge/.NET-10.0-blue) ![C#](https://img.shields.io/badge/C%23-12-green) ![EF%20Core](https://img.shields.io/badge/EF%20Core-9.0.11-orange)
+
+TaskSyncPro is a layered ASP.NET Core 10.0 Web API for enterprise task, team, employee, role, billing, and activity logging management. It enforces validated workflows, provides auditable task activity, and separates presentation, business logic, and data access concerns.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Technology Stack](#technology-stack)
+- [Setup](#setup)
+- [API Endpoints](#api-endpoints)
+- [Domain Model & Validation](#domain-model--validation)
+- [License](#license)
+
+---
+
+## Overview
+
+TaskSyncPro is designed for organizations that need consistent task workflows, structured ownership, and traceable activity across teams. It combines rigorous validation rules with a pragmatic REST API for operational use cases and educational demonstration.
+
+## Architecture
+
+The solution follows a clean 3‑tier architecture:
+
+```mermaid
+flowchart LR
+    Client[Client Apps] --> API[API Layer]
+    API --> BLL[BLL Services]
+    BLL --> DAL[DAL Repositories]
+    DAL --> DB[(SQL Server)]
+```
+
+Entity relationships (simplified):
+
+```mermaid
+erDiagram
+    ROLE ||--o{ USER : has
+    USER ||--o| EMPLOYEE : links
+    TEAM ||--o{ EMPLOYEE : contains
+    USER ||--o{ TASK : creates
+    EMPLOYEE ||--o{ TASK : assigned
+    TASK ||--o| BILLINGRECORD : billed
+    TASK ||--o{ TASKLOG : logs
+```
+
+## Technology Stack
+
+- .NET 10.0, ASP.NET Core 10.0, C# 12
+- Entity Framework Core 9.0.11 with SQL Server
+- AutoMapper 14.0.0, Microsoft.AspNetCore.OpenApi 10.0.1, System.Net.Mail
+- Repository + Factory patterns, DTO-based contracts, Dependency Injection
+
+---
+
+## Setup
+
+### Prerequisites
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- SQL Server (Express, Developer, or Enterprise)
+
+### Configuration
+
+Update the connection string in [API/appsettings.json](API/appsettings.json).
+
+### Apply Migrations
+
+```bash
+dotnet ef database update --project DAL --startup-project API
+```
+
+### Install & Build
+
+```bash
+dotnet restore
+dotnet build
+```
+
+### Run
+
+```bash
+dotnet run --project API
+```
+
+API URLs:
+
+- HTTPS: `https://localhost:5001`
+- HTTP: `http://localhost:5000`
+- OpenAPI: `https://localhost:5001/openapi/v1.json` (Development)
+
+### Email Credentials (Optional)
+
+Credential delivery uses SMTP in [BLL/Helpers/EmailService.cs](BLL/Helpers/EmailService.cs). Replace the sender address and app password before production use.
+
+---
+
+## API Endpoints
+
+### Users
+
+```
+POST   /api/user/login
+GET    /api/user/all
+GET    /api/user/all/{id}
+GET    /api/user/byEmail/{email}
+GET    /api/user/byPhoneNumber/{phoneNumber}
+GET    /api/user/withRoles
+POST   /api/user/create
+PUT    /api/user/update
+DELETE /api/user/delete/{id}
+```
+
+### Employees
+
+```
+POST   /api/employee/create
+GET    /api/employee/all
+GET    /api/employee/all/{id}
+GET    /api/employee/ByEmail/{email}
+GET    /api/employee/ByPhoneNumber/{phoneNumber}
+GET    /api/employee/GetEmployeeWithDetails
+GET    /api/employee/GetEmployeeWithDetails/{id}
+PUT    /api/employee/update
+DELETE /api/employee/delete/{id}
+```
+
+### Tasks
+
+```
+POST   /api/task/create
+GET    /api/task/all
+GET    /api/task/all/{id}
+GET    /api/task/findByTitle/{title}
+GET    /api/task/findByPriority/{priority}
+GET    /api/task/findByStatus/{status}
+PUT    /api/task/update
+DELETE /api/task/delete/{id}
+```
+
+### Teams
+
+```
+POST   /api/team/create
+GET    /api/team/all
+GET    /api/team/all/{id}
+GET    /api/team/withEmployees
+GET    /api/team/withEmployees/{id}
+GET    /api/team/withEmployeeTask
+GET    /api/team/withEmployeeTask/{id}
+PUT    /api/team/update
+DELETE /api/team/delete/{id}
+```
+
+### Billing
+
+```
+POST   /api/billing/create
+GET    /api/billing/all
+GET    /api/billing/all/{id}
+GET    /api/billing/withTask
+GET    /api/billing/withTask/{id}
+PUT    /api/billing/update
+DELETE /api/billing/delete/{id}
+```
+
+### Roles
+
+```
+POST   /api/role/Create
+GET    /api/role/all
+GET    /api/role/Find/{id}
+GET    /api/role/byName/{role}
+PUT    /api/role/update
+DELETE /api/role/Delete/{id}
+```
+
+### Task Logs
+
+```
+POST   /api/tasklog/create
+GET    /api/tasklog/all
+GET    /api/tasklog/all/{id}
+GET    /api/tasklog/byTask/{taskId}
+PUT    /api/tasklog/update
+DELETE /api/tasklog/delete/{id}
+```
+
+---
+
+## Domain Model & Validation
+
+- Users
+    - Email and phone must be unique; password is hashed
+    - Login returns user details (no JWT/token implemented)
+- Roles
+    - Names must be unique; CRUD supported
+- Employees
+    - `UserId` and `TeamId` must reference existing records
+    - One employee per user; designation must be unique within a team
+- Teams
+    - Names must be unique; hierarchical views include employees and tasks
+- Tasks
+    - Status: one of Pending, InProgress, Completed, Overdue
+    - Priority: one of Low, Medium, High
+    - DueDate cannot be earlier than CreatedAt
+    - Completed tasks require `CompletedAt` (not in future, not before CreatedAt)
+    - Non-completed tasks must not have `CompletedAt`
+    - Overdue tasks require past `DueDate`
+    - Creator cannot be the assignee; InProgress requires assignee; Pending must not be assigned
+    - Title max length 100; description max length 500; duplicate title checks
+- Task Logs
+    - `TaskItemId` must reference an existing task
+    - `ChangedAt` cannot be in the future and must not regress existing history
+    - Prevents conflicting duplicate logs for the same task
+- Billing
+    - Amount must be positive; `TaskId` must reference existing task
+    - Enforces one billing record per task; supports paid status and `PaidAt`
+
+## License
+
+This project is for educational use as part of university coursework. See [LICENSE](LICENSE).
+
+Version: 1.0.0 • Last Updated: January 20, 2026
+
+

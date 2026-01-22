@@ -1,0 +1,98 @@
+﻿using BLL.DTOs;
+using DAL;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BLL.Services
+{
+    public class ReportsService
+    {
+        private readonly DataAccessFactory dataAccessFactory;
+        public ReportsService(DataAccessFactory dataAccessFactory)
+        {
+            this.dataAccessFactory = dataAccessFactory;
+        }
+
+
+        public TaskStatusOverviewDTO TaskStatusOverview(DateRangeDTO range)
+        {
+            var tasks = dataAccessFactory.ReportDataAccess().GetTasks(range.From, range.To);
+
+            return new TaskStatusOverviewDTO
+            {
+                // "Pending", "InProgress","Completed","Overdue"
+                TotalTasks = tasks.Count,
+                CompletedTasks = tasks.Count(t => t.Status == "Completed"),
+                PendingTasks = tasks.Count(t => t.Status == "Pending"),
+                InProgress = tasks.Count(t => t.Status == "InProgress"),
+                OverdueTasks = tasks.Count(t => t.Status == "Overdue" && t.DueDate < DateTime.Now)
+            };
+        }
+
+
+        public TaskPriorityOverviewDTO TaskPriorityOverview(DateRangeDTO range)
+        {
+            var tasks = dataAccessFactory.ReportDataAccess().GetTasks(range.From, range.To);
+
+            return new TaskPriorityOverviewDTO
+            {
+                // "Low", "Medium", "High"
+                TotalTasks = tasks.Count,
+                LowPriorityTasks = tasks.Count(t => t.Priority == "Low"),
+                MediumPriorityTasks = tasks.Count(t => t.Priority == "Medium"),
+                HighPriorityTasks = tasks.Count(t => t.Priority == "High")
+            };
+        }
+
+
+        // Employee Performance
+        public List<EmployeePerformanceDTO> EmployeePerformance(DateRangeDTO range)
+        {
+            var employees = dataAccessFactory.ReportDataAccess().GetEmployeesWithTasks(range.From, range.To);
+
+            var result = new List<EmployeePerformanceDTO>();
+
+            foreach (var e in employees)
+            {
+                var tasks = e.Tasks;
+
+                if (!tasks.Any()) continue;
+
+                int overdue = tasks.Count(t =>
+                    t.Status != "Completed" && t.DueDate < DateTime.Now);
+
+                double avgCompletion = tasks
+                    .Where(t => t.CompletedAt != null)
+                    .Average(t => (t.CompletedAt.Value - t.DueDate).TotalDays);
+
+                double score =
+                    ((double)tasks.Count(t => t.Status == "Completed") / tasks.Count) * 100
+                    - (overdue * 5); // penalty
+
+                result.Add(new EmployeePerformanceDTO
+                {
+                    EmployeeId = e.Id,
+                    EmployeeName = e.User.Name,
+                    AssignedTasks = tasks.Count,
+                    CompletedTasks = tasks.Count(t => t.Status == "Completed"),
+                    OverdueTasks = overdue,
+                    AvgCompletionTimeDays = Math.Round(avgCompletion, 2),
+                    EfficiencyScore = Math.Max(score, 0),
+                    Grade = GetGrade(score)
+                });
+            }
+            return result;
+        }
+
+        // Grade Logic
+        private string GetGrade(double score)
+        {
+            if (score >= 85) return "A";
+            if (score >= 70) return "B";
+            return "C";
+        }
+
+
+    }
+}

@@ -232,6 +232,70 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "API.Controllers.ReportsController",
+    "Method": "EmployeePerformance",
+    "RelativePath": "api/Reports/employee-performance",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "range",
+        "Type": "BLL.DTOs.DateRangeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ReportsController",
+    "Method": "TaskPriorityOverview",
+    "RelativePath": "api/Reports/task-priority-overview",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "range",
+        "Type": "BLL.DTOs.DateRangeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ReportsController",
+    "Method": "TaskStatusOverview",
+    "RelativePath": "api/Reports/task-status-overview",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "range",
+        "Type": "BLL.DTOs.DateRangeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.ReportsController",
+    "Method": "TeamPerformance",
+    "RelativePath": "api/Reports/team-performance",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "range",
+        "Type": "BLL.DTOs.DateRangeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.RoleController",
     "Method": "All",
     "RelativePath": "api/Role/all",
