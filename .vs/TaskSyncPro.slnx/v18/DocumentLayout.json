@@ -66,8 +66,7 @@
               "RelativeToolTip": "BLL\\DTOs\\TeamPerformanceDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T07:01:19.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T07:01:19.763Z"
             },
             {
               "$type": "Document",
@@ -79,8 +78,7 @@
               "RelativeToolTip": "BLL\\Services\\TaskService.cs",
               "ViewState": "AgIAAIkAAAAAAAAAAADwvw4AAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:29:33.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:29:33.873Z"
             },
             {
               "$type": "Document",
@@ -92,8 +90,7 @@
               "RelativeToolTip": "BLL\\DTOs\\TaskDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:33:14.491Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:33:14.491Z"
             },
             {
               "$type": "Document",
@@ -105,8 +102,7 @@
               "RelativeToolTip": "API\\Controllers\\ReportsController.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAEwFwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:25:34.818Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:25:34.818Z"
             },
             {
               "$type": "Document",
@@ -118,8 +114,7 @@
               "RelativeToolTip": "BLL\\Services\\ReportsService.cs",
               "ViewState": "AgIAAHsAAAAAAAAAAAAmwFsAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:20:53.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:20:53.234Z"
             },
             {
               "$type": "Document",
@@ -131,8 +126,7 @@
               "RelativeToolTip": "DAL\\Interfaces\\IReports.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:14:32.053Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:14:32.053Z"
             },
             {
               "$type": "Document",
@@ -144,8 +138,7 @@
               "RelativeToolTip": "DAL\\Repos\\ReportRepo.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAmwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:14:22.734Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:14:22.734Z"
             },
             {
               "$type": "Document",
@@ -157,8 +150,7 @@
               "RelativeToolTip": "BLL\\DTOs\\DateRangeDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T06:18:14.41Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-22T06:18:14.41Z"
             },
             {
               "$type": "Document",
@@ -170,8 +162,7 @@
               "RelativeToolTip": "BLL\\MapperConfig.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAYwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T04:38:42.857Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-21T04:38:42.857Z"
             }
           ]
         }
